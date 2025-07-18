@@ -1,0 +1,35 @@
+.table {
+  border-collapse: collapse;
+  display: block;
+  margin-top: 50px;
+  width: 100%;
+}
+.headItem {
+  padding: 5px 10px;
+  font-weight: 700;
+  border: 1px solid black;
+}
+.row {}
+.tr {
+
+}
+.td {
+  text-align: center;
+  padding: 5px 10px;
+  border: 1px solid black;
+}
+.total {
+  font-weight: 700;
+}
+.all_desc {
+  text-align: right;
+}
+.btn_download {
+  width: 120px;
+}
+.btn_download_wrapper {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
