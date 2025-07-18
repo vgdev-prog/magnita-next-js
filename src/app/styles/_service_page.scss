@@ -1,0 +1,28 @@
+section.services-page {
+    .container {
+        text-align: center;
+        img {
+            margin-bottom: 2vw;
+        }
+
+        h2 {
+            font-size: 1.4vw;
+            line-height: 140%;
+        }
+        .get-consult {
+            margin-top: 4vw;
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    section.services-page {
+        margin-top: 30px;
+        .container {
+        h2 {
+            font-size: 3vw;
+            line-height: 4vw;
+        }
+        }
+    }
+}

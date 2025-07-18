@@ -1,0 +1,187 @@
+section.news-page {
+    .container {
+        display: flex;
+        justify-content: space-between;
+        .left {
+            width: 23%;
+            .sidebar-slider {
+                ul.slick-dots {
+                    right: -7vw;
+                }
+                .get-calculated {
+                    form {
+                        margin-bottom: 1.2vw;
+                    }
+                }
+            }
+        }
+        .right {
+            width: 72%;
+            height: max-content;
+            .news-items {
+                display: flex;
+                align-items: start;
+                justify-content: space-between;
+                flex-flow: wrap;
+                a.item {
+                    border: 1px solid rgba(0,0,0,.2);
+                    border-radius: .5vw;
+                    display: inline-block;
+                    margin-bottom: 2vw;
+                    width: 48%;
+                    position: relative;
+                    .img {
+                        height: 15vw;
+                        width: 100%;
+                        display: inline-block;
+                        background-size: cover;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                    }
+                    .content {
+                        padding: 0 2vw 2vw;
+                        .title {
+                            font-size: 1.3vw;
+                            display: block;
+                            margin: 1vw 0;
+                            min-height: 2.5vw;
+                        }
+                        .desc {
+                            font-size: 1vw;
+                            line-height: 1.2vw;
+                        }
+                        .more {
+                            display: block;
+                            margin-top: 1vw;
+                            font-size: 1vw;
+                            width: max-content;
+                            line-height: 1.2vw;
+                            color: orange;
+                            border-bottom: 1px solid orange;
+                        }
+                    }
+                    span.date {
+                        position: absolute;
+                        top: 1vw;
+                        right: 1vw;
+                        background-color: rgb(255,255,255,.8);
+                        border-radius: .5vw;
+                        padding: .5vw;
+                        box-sizing: border-box;
+                        border: 1px solid rgba(0,0,0,.2);
+                        display: flex;
+                        align-items: center;
+                        img {
+                            width: 1vw;
+                            margin-right: .5vw;
+                        }
+                    }
+                    &:hover {
+                        box-shadow: .2vw .2vw 2vw .1vw $yellow;
+                    }
+                }
+            }
+            .pagination {
+                margin-top: 4vw;
+                ul {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    li {
+                        a {
+                            font-size: 1vw;
+                            &.page {
+                                width: 2vw;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin: 0 .5vw;
+                                height: 2vw;
+                                color: #fff;
+                                background-color: rgba(0,0,0,.15);
+                                &:hover {
+                                    background-color: orange;
+                                }
+                            }
+                            &.active {
+                                background-color: orange;
+                            }
+                            &.arr {
+                                margin: 0 2vw;
+                                &:hover {
+                                    color: orange;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .news-item-content {
+                .img {
+                    height: 20vw;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    margin-bottom: 2vw;
+                }
+
+                a.back {
+                    border: 1px solid #0c9cdc;
+                    border-radius: .5vw;
+                    padding: .5vw 1vw;
+                    display: flex;
+                    margin-top: 2vw;
+                    box-sizing: border-box;
+                    align-items: center;
+                    width: max-content;
+                    justify-content: center;
+                    img {
+                        margin-right: 1vw;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    section.news-page .container {
+        flex-flow: wrap-reverse;
+        .left {
+            width: 100%;
+            display: none;
+        }
+        .right {
+            width: 100%;
+            .news-items {
+                a.item {
+                    width: 100%;
+                    margin-bottom: 30px;
+                    .img {
+                        height: 50vw;
+                    }
+                    .content {
+                        .more,
+                        .title {
+                            font-size: 3vw;
+                            line-height: 4vw;
+                        }
+                    }
+                }
+            }
+            .news-item-content {
+                .img {
+                    height: 40vw;
+                    margin: 20px 0;
+                }
+
+                a.back {
+                    font-size: 2.5vw;
+                    padding: 1.5vw 2vw;
+                    border-radius: 2.5vw;
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+}
