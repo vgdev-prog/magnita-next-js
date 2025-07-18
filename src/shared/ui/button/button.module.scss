@@ -1,0 +1,48 @@
+.button {
+  position: relative;
+  overflow: hidden;
+  background-color: orange;
+  background-image: linear-gradient(#ff0, 20%, orange);
+  border-radius: 24px;
+  box-shadow: 0 43px 101px rgba(120,136,255,.2), 0 4px 0 #f59211, inset 0 0 15px orange;
+  color: #282828;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  text-align: center;
+  transition: all .3s ease;
+}
+
+/* Псевдоэлемент блика */
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+                  120deg,
+                  rgba(255, 255, 255, 0.2) 0%,
+                  rgba(255, 255, 255, 0.6) 50%,
+                  rgba(255, 255, 255, 0.2) 100%
+  );
+  transform: skewX(-20deg);
+  animation: shine 2.5s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
+}
+
+/* При наведении немного изменим фон */
+.button:hover {
+  background-image: linear-gradient(#ff0, 0, orange);
+}
