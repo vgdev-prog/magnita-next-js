@@ -1,0 +1,17 @@
+.block {
+display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.link {
+display: flex;
+  flex-direction: column;
+  color: #fff;
+  font-size: 10px;
+  text-align: center;
+}
+
+.text {
+  font-size: 12px;
+}
