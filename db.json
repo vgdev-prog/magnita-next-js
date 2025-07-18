@@ -1,0 +1,175 @@
+{
+  "navigation": [
+    {
+      "id": 1,
+      "label": "main",
+      "url": "/"
+    },
+    {
+      "id": 2,
+      "label": "catalog_head",
+      "url": "/catalog",
+      "children": [
+        {
+          "id": 3,
+          "label": "",
+          "url": "",
+          "children": [
+            {
+              "id": 4,
+              "label": "category_1",
+              "url": "/protective-roller-shutters",
+              "img": "/img/categories/1s.jpg.webp"
+            },
+            {
+              "id": 5,
+              "label": "transparent_title",
+              "url": "/transparent-shutters",
+              "img": "/img/categories/5c.jpg.webp"
+            },
+            {
+              "id": 6,
+              "label": "category_2",
+              "url": "/blinds-desc",
+              "img": "/img/categories/2c.jpg.webp"
+            },
+            {
+              "id": 7,
+              "label": "category_3",
+              "url": "/shrutters-individual",
+              "img": "/img/categories/10c.jpg.webp"
+            },
+            {
+              "id": 8,
+              "label": "category_13",
+              "url": "/shutters-kombi",
+              "img": "/img/categories/13.jpg.webp"
+            },
+            {
+              "id": 9,
+              "label": "category_4",
+              "url": "/shutters-gates-desc",
+              "img": "/img/categories/3c.jpg.webp"
+            },
+            {
+              "id": 10,
+              "label": "rol-vorota",
+              "url": "/roletni-vorota",
+              "img": "/img/categories/4c.jpg.webp"
+            },
+            {
+              "id": 11,
+              "label": "category_6",
+              "url": "/sliding-gate",
+              "img": "/img/categories/5s.jpg.webp"
+            },
+            {
+              "id": 12,
+              "label": "category_7",
+              "url": "#",
+              "img": "/img/categories/6.jpg.webp",
+              "disabled": true,
+              "under_construction_label": "section_under_construction"
+            },
+            {
+              "id": 13,
+              "label": "category_8",
+              "url": "/zhalyuzi",
+              "img": "/img/categories/7.webp.webp"
+            },
+            {
+              "id": 14,
+              "label": "category_9",
+              "url": "#",
+              "img": "/img/categories/8.jpg.webp",
+              "disabled": true,
+              "under_construction_label": "section_under_construction"
+            },
+            {
+              "id": 15,
+              "label": "category_10",
+              "url": "/product-parts",
+              "img": "/img/categories/11.jpg.webp"
+            },
+            {
+              "id": 16,
+              "label": "category_11",
+              "url": "/sop-product",
+              "img": "/img/categories/9.jpg.webp"
+            },
+            {
+              "id": 17,
+              "label": "category_12",
+              "url": "/avtomatika-desc",
+              "img": "/img/categories/12c.jpg.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "label": "products",
+      "url": "/products",
+      "children": [
+        {
+          "id": 19,
+          "label": "protective_shrutters",
+          "url": "/products"
+        },
+        {
+          "id": 20,
+          "label": "protective_blinds",
+          "url": "/protective-blinds"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "label": "parts",
+      "url": "/product-parts"
+    },
+    {
+      "id": 22,
+      "label": "services",
+      "url": "/services"
+    },
+    {
+      "id": 23,
+      "label": "about",
+      "url": "/about"
+    },
+    {
+      "id": 24,
+      "label": "faq",
+      "url": "/articles",
+      "children": [
+        {
+          "id": 25,
+          "label": "warranty",
+          "url": "/warranty"
+        },
+        {
+          "id": 26,
+          "label": "delivery",
+          "url": "/dostavka-ta-oplata"
+        },
+        {
+          "id": 27,
+          "label": "articles",
+          "url": "/articles"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "label": "dealers",
+      "url": "/dealers"
+    },
+    {
+      "id": 29,
+      "label": "contact",
+      "url": "/contacts"
+    }
+  ]
+}
