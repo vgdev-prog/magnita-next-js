@@ -1,0 +1,122 @@
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { Header } from '../index'
+
+// Mock all header components
+jest.mock('@/src/widgets/header/ui/header-logo', () => ({
+  HeaderLogo: () => <div data-testid="header-logo">Logo</div>,
+}))
+
+jest.mock('@/src/widgets/header/ui/header-factory', () => ({
+  HeaderFactory: () => <div data-testid="header-factory">Factory</div>,
+}))
+
+jest.mock('@/src/widgets/header/ui/header-calculator', () => ({
+  __esModule: true,
+  default: () => <div data-testid="header-calculator">Calculator</div>,
+}))
+
+jest.mock('@/src/widgets/header/ui/header-messengers', () => ({
+  __esModule: true,
+  default: () => <div data-testid="header-messengers">Messengers</div>,
+}))
+
+jest.mock('@/src/widgets/header/ui/header-contacts', () => ({
+  HeaderContacts: ({ onCallClick }: { onCallClick: () => void }) => (
+    <div data-testid="header-contacts">
+      <button onClick={onCallClick} data-testid="call-button">
+        Call
+      </button>
+    </div>
+  ),
+}))
+
+jest.mock('@/src/features/navigation', () => ({
+  ClientNavigationMenu: () => <div data-testid="navigation-menu">Navigation</div>,
+}))
+
+// Mock console.log to test the callback
+const originalConsoleLog = console.log
+beforeEach(() => {
+  console.log = jest.fn()
+})
+
+afterEach(() => {
+  console.log = originalConsoleLog
+})
+
+describe('Header Component', () => {
+  it('renders all header components', () => {
+    render(<Header />)
+    
+    expect(screen.getByTestId('header-logo')).toBeInTheDocument()
+    expect(screen.getByTestId('header-factory')).toBeInTheDocument()
+    expect(screen.getByTestId('header-calculator')).toBeInTheDocument()
+    expect(screen.getByTestId('header-messengers')).toBeInTheDocument()
+    expect(screen.getByTestId('header-contacts')).toBeInTheDocument()
+    expect(screen.getByTestId('navigation-menu')).toBeInTheDocument()
+  })
+
+  it('renders header with correct structure', () => {
+    const { container } = render(<Header />)
+    
+    const headerElement = container.querySelector('header')
+    expect(headerElement).toBeInTheDocument()
+    
+    const topHeader = container.querySelector('.top_header')
+    expect(topHeader).toBeInTheDocument()
+    
+    const bottomHeader = container.querySelector('.bottom_header')
+    expect(bottomHeader).toBeInTheDocument()
+    
+    const navElement = container.querySelector('nav')
+    expect(navElement).toBeInTheDocument()
+  })
+
+  it('applies correct CSS classes', () => {
+    const { container } = render(<Header />)
+    
+    const headerElement = container.querySelector('header')
+    expect(headerElement).toHaveClass('header')
+    
+    const topHeaderDiv = container.querySelector('.top_header')
+    expect(topHeaderDiv).toBeInTheDocument()
+    
+    const containerDiv = container.querySelector('.container')
+    expect(containerDiv).toHaveClass('header__container')
+    expect(containerDiv).toHaveClass('container')
+    
+    const bottomHeaderDiv = container.querySelector('.bottom_header')
+    expect(bottomHeaderDiv).toBeInTheDocument()
+    
+    const navElement = container.querySelector('nav')
+    expect(navElement).toHaveClass('header__container')
+  })
+
+  it('handles call button click', async () => {
+    const user = userEvent.setup()
+    
+    render(<Header />)
+    
+    const callButton = screen.getByTestId('call-button')
+    await user.click(callButton)
+    
+    expect(console.log).toHaveBeenCalledWith('open modal')
+  })
+
+  it('renders as a semantic header element', () => {
+    render(<Header />)
+    
+    const headerElement = screen.getByRole('banner')
+    expect(headerElement).toBeInTheDocument()
+    expect(headerElement.tagName).toBe('HEADER')
+  })
+
+  it('contains navigation landmark', () => {
+    render(<Header />)
+    
+    const navElement = screen.getByRole('navigation')
+    expect(navElement).toBeInTheDocument()
+    expect(navElement.tagName).toBe('NAV')
+  })
+})
