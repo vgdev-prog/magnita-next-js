@@ -1,0 +1,79 @@
+.search-widget {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.3);
+    z-index: -222;
+    opacity: 0;
+    visibility: hidden;
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        z-index: 999;
+        .inner {
+            top: 50%;
+        }
+    }
+    .inner {
+        position: absolute;
+        left: 50%;
+        top: 70%;
+        padding: 2.5vw 2vw 2vw;
+        border-radius: .5vw;
+        box-sizing: border-box;
+        transform: translate(-50%, -50%);
+        background-color: #282828;
+        span.close-search-widget {
+            position: absolute;
+            top: .5vw;
+            right: .5vw;
+            cursor: pointer;
+            &:hover {
+                transform: rotate(45deg);
+            }
+            svg {
+                width: 1.2vw;
+                height: 1.2vw;
+                path {
+                    fill: orange;
+                }
+            }
+        }
+        form {
+            position: relative;
+            input {
+                width: 30vw;
+                background-color: transparent;
+                padding: .7vw 1vw;
+                color: rgba(255,255,255,.8);
+                font-size: 1.2vw;
+                border-radius: .5vw;
+                box-shadow: inset 0 0 5px 1px orange;
+                &:focus, &:active {
+                    background-color: transparent;
+                }
+            }
+            button {
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: .5vw;
+                &:hover {
+                    transform: translateY(-50%) scale(1.2);
+                }
+                svg {
+                    width: 1.5vw;
+                    height: 1.5vw;
+                    path {
+                        fill: orange;
+                    }
+                }
+            }
+        }
+    }
+}

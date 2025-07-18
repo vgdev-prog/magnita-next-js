@@ -1,0 +1,198 @@
+section.thx-page {
+    .right {
+        width: 100%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        p.thx-for-order {
+            font-size: 3vw;
+            font-weight: bold;
+        }
+        p.second {
+            font-size: 1.1vw;
+            margin-top: 4vw;
+            color: rgba(0,0,0,.6);
+            b {
+                font-weight: bold;
+                color: #000;
+                font-size: 1.5vw;
+            }
+        }
+        p.write-to {
+            font-weight: bold;
+            font-size: 1.5vw;
+            margin-top: 5vw;
+        }
+        .messengers {
+            display: flex;
+            margin: 2vw 0 4vw;
+            a.item {
+                display: flex;
+                border: 1px solid rgba(0,0,0,.2);
+                padding: .5vw 1.5vw;
+                box-sizing: border-box;
+                align-items: center;
+                margin-right: 2vw;
+                border-radius: 2vw;
+                transition: .3s all ease;
+                &.va:hover {
+                    background-color: #665cac;
+                    color: #fff;
+                    svg path {
+                        fill: #fff;
+                    }
+                }
+                &.tg:hover {
+                    background-color: #08c;
+                    color: #fff;
+                    svg path {
+                        fill: #fff;
+                    }
+                }
+                svg {
+                    margin-right: 1vw;
+                    width: 1.5vw;
+                    &.va path {
+                        fill: #665cac;
+                    }
+                    &.tg path {
+                        fill: #08c;
+                    }
+                }
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .container {
+        display: flex;
+        padding-top: 20vw;
+        justify-content: space-between;
+        .right {
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            p.thx-for-order {
+                font-size: 3vw;
+                font-weight: bold;
+            }
+            p.second {
+                font-size: 1.1vw;
+                margin-top: 4vw;
+                color: rgba(0,0,0,.6);
+                b {
+                    font-weight: bold;
+                    color: #000;
+                    font-size: 1.5vw;
+                }
+            }
+            p.write-to {
+                font-weight: bold;
+                font-size: 1.5vw;
+                margin-top: 5vw;
+            }
+            .messengers {
+                display: flex;
+                margin: 2vw 0 4vw;
+                a.item {
+                    display: flex;
+                    border: 1px solid rgba(0,0,0,.2);
+                    padding: .5vw 1.5vw;
+                    box-sizing: border-box;
+                    align-items: center;
+                    margin-right: 2vw;
+                    border-radius: 2vw;
+                    transition: .3s all ease;
+                    &.va:hover {
+                        background-color: #665cac;
+                        color: #fff;
+                        svg path {
+                            fill: #fff;
+                        }
+                    }
+                    &.tg:hover {
+                        background-color: #08c;
+                        color: #fff;
+                        svg path {
+                            fill: #fff;
+                        }
+                    }
+                    svg {
+                        margin-right: 1vw;
+                        width: 1.5vw;
+                        &.va path {
+                            fill: #665cac;
+                        }
+                        &.tg path {
+                            fill: #08c;
+                        }
+                    }
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 800px) {
+    section.thx-page {
+        flex-flow: wrap-reverse;
+        margin-top: 10vw;
+        .left {
+            width: 100%;
+            height: 100vw;
+            margin-top: 5vw;
+            img {
+                width: 100%;
+            }
+        }
+        .right {
+            width: 100%;
+            padding-right: 0;
+            p.thx-for-order {
+                font-size: 20px;
+                line-height: 28px;
+                font-weight: bold;
+            }
+            p.second {
+                font-size: 14px;
+                line-height: 20px;
+                margin-top: 8vw;
+                max-width: 70%;
+                text-align: center;
+                b {
+                    font-size: 3.5vw;
+                }
+            }
+            p.write-to {
+                font-weight: bold;
+                font-size: 14px;
+                line-height: 20px;
+                margin-top: 10vw;
+            }
+            .messengers {
+                margin: 6vw 0 8vw;
+                a.item {
+                    padding: 1vw 2.5vw;
+                    margin-right: 4vw;
+                    font-size: 14px;
+                    line-height: 20px;
+                    svg {
+                        margin-right: 1vw;
+                        width: 3.5vw;
+                    }
+                }
+            }
+        }
+    }
+}

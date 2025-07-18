@@ -1,0 +1,333 @@
+section.dealer-page {
+    .container {
+        p.desc-title {
+            font-size: 1vw;
+            line-height: 120%;
+            width: 80%;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .product-items {
+            margin-top: 2vw;
+            display: flex;
+            justify-content: space-around;
+            a.item {
+                width: 15%;
+                display: inline-block;
+                span.img {
+                    width: 100%;
+                    height: 10vw;
+                    display: inline-block;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center center;
+                    border-radius: .5vw;
+                }
+                span.title {
+                    font-size: 1vw;
+                    display: inline-block;
+                    margin-top: 1vw;
+                    width: 100%;
+                    text-align: center;
+                }
+                &:hover {
+                    span.title {
+                        color: orange;
+                    }
+                }
+            }
+        }
+        h3 {
+            margin: 4vw 0 3vw;
+            text-align: center;
+            font-size: 2vw;
+            font-weight: bold;
+        }
+        .cooperation-types {
+            display: flex;
+            justify-content: space-between;
+            .item {
+                width: 30%;
+                position: relative;
+                &:after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    right: -2.5vw;
+                    display: inline-block;
+                    background-color: rgba(0,0,0,.07);
+                    height: 100%;
+                    width: 1px;
+                }
+                &:last-child:after {
+                    display: none;
+                }
+                p.title {
+                    text-align: center;
+                    font-size: 1.3vw;
+                    line-height: 120%;
+                    margin-bottom: 2vw;
+                    position: relative;
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        bottom: -.3vw;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        display: inline-block;
+                        background-color: orange;
+                        width: 50%;
+                        height: 1px;
+                    }
+                }
+                p.desc {
+                    text-align: center;
+                    font-size: 1vw;
+                    color: #555;
+                    line-height: 120%;
+                }
+            }
+        }
+        .get-consult {
+            margin-top: 3vw;
+            text-align: center;
+        }
+        .partners {
+            .partner-imgs {
+                display: flex;
+                justify-content: space-around;
+                flex-flow: wrap;
+                .item {
+                    width: 15%;
+                    height: 7vw;
+                    background-position: center center;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+    }
+}
+.dealer-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.2);
+    visibility: hidden;
+    opacity: 0;
+    z-index: -1;
+    &.show {
+        visibility: visible;
+        opacity: 1;
+        z-index: 9999;
+    }
+    .inner {
+        background-color: #fff;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 60%;
+        left: 50%;
+        width: 25%;
+        text-align: center;
+        padding: 40px 30px;
+        box-sizing: border-box;
+        border-radius: 5px;
+        border: 1px solid rgba(0,0,0,.1);
+        box-shadow: 0 0 0 0.5vw #fff;
+        transition: .3s all ease;
+        &.move {
+            top: 50%;
+        }
+        p.title {
+            font-weight: bold;
+            font-size: 1.5vw;
+            line-height: 100%;
+        }
+        p.desc {
+            margin-top: 30px;
+            font-size: 1vw;
+            color: #555;
+            line-height: 120%;
+        }
+        .messengers {
+            margin-top: 30px;
+            p.title {
+                font-size: 1.1vw;
+            }
+            .items {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 15px;
+                a.item {
+                    display: flex;
+                    color: #282828;
+                    align-items: center;
+                    font-size: .7vw;
+                    border: 1px solid rgba(0, 0, 0, .1);
+                    margin-right: .5vw;
+                    padding: .5vw;
+                    border-radius: 2vw;
+
+                    &.va:hover {
+                        color: #fff;
+                        background-color: #665cac;
+                        border: 1px solid #665cac;
+
+                        svg path {
+                            fill: #fff;
+                        }
+                    }
+
+                    &.tg:hover {
+                        color: #fff;
+                        background-color: #08c;
+                        border: 1px solid #08c;
+
+                        svg path {
+                            fill: #fff;
+                        }
+                    }
+
+                    &.wt:hover {
+                        color: #fff;
+                        background-color: #25d366;
+                        border: 1px solid #25d366;
+
+                        svg path {
+                            fill: #fff;
+                        }
+                    }
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    svg {
+                        width: 1vw;
+                        height: 1vw;
+                        margin-right: .5vw;
+
+                        &.wh {
+                            path {
+                                fill: #25d366;
+                            }
+                        }
+
+                        &.tg {
+                            path {
+                                fill: #08c;
+                            }
+                        }
+
+                        &.va {
+                            path {
+                                fill: #665cac;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        p.sub-title {
+            font-weight: bold;
+            font-size: 1.1vw;
+            margin-top: 20px;
+            line-height: 120%;
+        }
+        form {
+            margin-top: 20px;
+            button,
+            input {
+                display: block;
+                width: 80%;
+                box-sizing: border-box;
+                margin: 0 auto 10px;
+                padding: 1vw 1.5vw;
+                border-radius: 2vw;
+                font-size: 1vw;
+                border: none;
+                background-color: rgba(0,0,0,.05);
+            }
+        }
+        p.secure {
+            font-size: .8vw;
+            margin: 30px auto 0;
+            color: rgba(0,0,0,.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 1.5vw;
+                margin-right: .5vw;
+            }
+        }
+        span.form-cross-btn {
+            position: absolute;
+            top: .5vw;
+            right: .5vw;
+            cursor: pointer;
+            img {
+                width: 1vw;
+                transition: .3s all ease;
+            }
+            &:hover {
+                img {
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    section.dealer-page {
+        margin-bottom: 50px;
+        .container {
+            p.desc-title {
+                font-size: 2.5vw;
+                line-height: 3vw;
+            }
+            .product-items {
+                margin: 30px 0;
+                flex-flow: wrap;
+                a.item {
+                    width: 47%;
+                    margin-bottom: 20px;
+                    span.img {
+                        height: 30vw;
+                        border-radius: 5px;
+                    }
+                    span.title {
+                        font-size: 3vw;
+                        line-height: 4vw;
+                    }
+                }
+            }
+            h3 {
+                font-size: 3.5vw;
+                line-height: 4vw;
+            }
+            .cooperation-types {
+                flex-flow: wrap;
+                .item {
+                    width: 100%;
+                    margin-bottom: 30px;
+                    p.title {
+                        font-size: 3vw;
+                        line-height: 4vw;
+                        margin-bottom: 10px;
+                        &:after {
+                            bottom: -1vw;
+                        }
+                    }
+                    p.desc {
+                        font-size: 2.5vw;
+                        line-height: 3vw;
+                    }
+                }
+            }
+        }
+    }
+}

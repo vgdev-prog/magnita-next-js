@@ -1,0 +1,40 @@
+section.delivery_content {
+    .container {
+        h3 {
+            font-weight: bold;
+            font-size: 1.3vw;
+            margin: 1vw 0;
+        }
+        p {
+            font-size: 1vw;
+            line-height: 1.4vw;
+            margin: .5vw 0;
+            a {
+                text-decoration: underline;
+            }
+        }
+      li {
+            font-size: 1vw;
+            line-height: 1.4vw;
+            margin: .5vw 0;
+        }
+    }
+}
+@media only screen and (max-width: 800px) {
+    section.delivery_content {
+        .container {
+            h3 {
+                font-size: 3.3vw;
+                margin: 2vw 0;
+            }
+            p {
+                font-size: 2.5vw;
+                line-height: 3.4vw;
+            }
+            li {
+                font-size: 2.5vw;
+                line-height: 3.4vw;
+            }
+        }
+    }
+}
