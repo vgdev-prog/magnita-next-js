@@ -8,7 +8,7 @@ cart: ReactNode;
 
 export const HeaderActions = ({language,cart}: HeaderActionsProps) => {
     return (
-        <div >
+        <div>
             {language}
             {cart}
         </div>
