@@ -37,9 +37,9 @@ describe('TelegramButton Component', () => {
   })
 
   it('renders telegram icon', () => {
-    render(<TelegramButton />)
+    const { container } = render(<TelegramButton />)
     
-    const iconElement = screen.getByTestId('telegram-icon')
+    const iconElement = container.querySelector('svg')
     expect(iconElement).toBeInTheDocument()
   })
 
@@ -78,14 +78,17 @@ describe('TelegramButton Component', () => {
   })
 
   it('has proper semantic structure', () => {
-    render(<TelegramButton />)
+    const { container } = render(<TelegramButton />)
     
     const linkElement = screen.getByRole('link')
     expect(linkElement).toBeInTheDocument()
     
     // Should contain both icon and text for accessibility
-    expect(linkElement).toContainElement(screen.getByTestId('telegram-icon'))
-    expect(linkElement).toContainElement(screen.getByText('Telegram'))
+    const iconElement = container.querySelector('svg')
+    const textElement = screen.getByText('Telegram')
+    
+    expect(linkElement).toContainElement(iconElement!)
+    expect(linkElement).toContainElement(textElement)
   })
 
   it('uses useLocale hook', () => {

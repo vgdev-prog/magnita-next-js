@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { fetchClientNavigation } from '../navigation-api'
-import { ClientRoute } from '../../types'
+import { NavItem } from '../../types'
 
 // Mock axios
 jest.mock('axios')
@@ -13,38 +13,38 @@ describe('Navigation API', () => {
 
   describe('fetchClientNavigation', () => {
     it('fetches navigation data successfully', async () => {
-      const mockData: ClientRoute[] = [
-        { id: 1, label: 'Home', url: '/' },
-        { id: 2, label: 'About', url: '/about' },
-        { id: 3, label: 'Products', url: '/products' },
+      const mockData: NavItem[] = [
+        { id: 1, title: 'Home', href: '/' },
+        { id: 2, title: 'About', href: '/about' },
+        { id: 3, title: 'Products', href: '/products' },
       ]
 
       mockedAxios.get.mockResolvedValue({ data: mockData })
 
       const result = await fetchClientNavigation()
 
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
       expect(result).toEqual(mockData)
     })
 
     it('makes request to correct API endpoint', async () => {
-      const mockData: ClientRoute[] = []
+      const mockData: NavItem[] = []
       mockedAxios.get.mockResolvedValue({ data: mockData })
 
       await fetchClientNavigation()
 
       expect(mockedAxios.get).toHaveBeenCalledTimes(1)
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
     })
 
     it('returns data from axios response', async () => {
-      const mockData: ClientRoute[] = [
+      const mockData: NavItem[] = [
         {
           id: 1,
-          label: 'Test Navigation',
-          url: '/test',
+          title: 'Test Navigation',
+          href: '/test',
           children: [
-            { id: 2, label: 'Sub Item', url: '/test/sub' },
+            { id: 2, title: 'Sub Item', href: '/test/sub' },
           ],
         },
       ]
@@ -56,8 +56,8 @@ describe('Navigation API', () => {
       expect(result).toBe(mockData)
       expect(result).toHaveLength(1)
       expect(result[0]).toHaveProperty('id', 1)
-      expect(result[0]).toHaveProperty('label', 'Test Navigation')
-      expect(result[0]).toHaveProperty('url', '/test')
+      expect(result[0]).toHaveProperty('title', 'Test Navigation')
+      expect(result[0]).toHaveProperty('href', '/test')
       expect(result[0]).toHaveProperty('children')
       expect(result[0].children).toHaveLength(1)
     })
@@ -67,7 +67,7 @@ describe('Navigation API', () => {
       mockedAxios.get.mockRejectedValue(new Error(errorMessage))
 
       await expect(fetchClientNavigation()).rejects.toThrow(errorMessage)
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
     })
 
     it('handles empty response data', async () => {
@@ -81,21 +81,21 @@ describe('Navigation API', () => {
     })
 
     it('preserves data structure from API response', async () => {
-      const complexMockData: ClientRoute[] = [
+      const complexMockData: NavItem[] = [
         {
           id: 1,
-          label: 'Main Category',
-          url: '/main',
+          title: 'Main Category',
+          href: '/main',
           children: [
             {
               id: 2,
-              label: 'Subcategory 1',
-              url: '/main/sub1',
+              title: 'Subcategory 1',
+              href: '/main/sub1',
               children: [
-                { id: 3, label: 'Deep Item', url: '/main/sub1/deep' },
+                { id: 3, title: 'Deep Item', href: '/main/sub1/deep' },
               ],
             },
-            { id: 4, label: 'Subcategory 2', url: '/main/sub2' },
+            { id: 4, title: 'Subcategory 2', href: '/main/sub2' },
           ],
         },
       ]
@@ -107,12 +107,12 @@ describe('Navigation API', () => {
       expect(result).toEqual(complexMockData)
       expect(result[0].children).toBeDefined()
       expect(result[0].children![0].children).toBeDefined()
-      expect(result[0].children![0].children![0].label).toBe('Deep Item')
+      expect(result[0].children![0].children![0].title).toBe('Deep Item')
     })
 
     it('returns proper TypeScript types', async () => {
-      const mockData: ClientRoute[] = [
-        { id: 1, label: 'Typed Item', url: '/typed' },
+      const mockData: NavItem[] = [
+        { id: 1, title: 'Typed Item', href: '/typed' },
       ]
 
       mockedAxios.get.mockResolvedValue({ data: mockData })
@@ -121,8 +121,8 @@ describe('Navigation API', () => {
 
       // TypeScript compilation will fail if types don't match
       expect(typeof result[0].id).toBe('number')
-      expect(typeof result[0].label).toBe('string')
-      expect(typeof result[0].url).toBe('string')
+      expect(typeof result[0].title).toBe('string')
+      expect(typeof result[0].href).toBe('string')
     })
   })
 })
