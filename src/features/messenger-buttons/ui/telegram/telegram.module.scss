@@ -1,26 +1,86 @@
 .btn {
+  position: relative;
+  overflow: hidden;
   align-items: center;
-  border: 1px solid hsla(0,0%,100%,.3);
-  border-radius: 24px;
-  color: #efebeb;
+  background: rgba(26, 144, 235, 0.1);
+  border: 2px solid rgba(26, 144, 235, 0.3);
+  border-radius: 12px;
+  color: #ffffff;
   display: inline-flex;
-  gap: 5px;
+  gap: 6px;
   font-size: 11px;
-  padding: 8px 10px;
-  transition: all 300ms linear;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  padding: 8px 12px;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 4px 16px rgba(26, 144, 235, 0.2),
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      transparent 100%
+    );
+    transition: left 0.6s ease;
+    pointer-events: none;
+  }
+
   &:hover {
-    background-color: #08c;
-    border: 1px solid #08c;
-    svg {
-      fill: white;
+    background: linear-gradient(135deg, #1a90eb 0%, #0d7ac4 100%);
+    border-color: #1a90eb;
+    color: #ffffff;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 
+      0 8px 24px rgba(26, 144, 235, 0.3),
+      0 4px 12px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+    &::before {
+      left: 100%;
+    }
+
+    .icon {
+      fill: #ffffff;
+      transform: scale(1.1);
     }
   }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 
+      0 4px 16px rgba(26, 144, 235, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 0 0 3px rgba(26, 144, 235, 0.3);
+  }
 }
+
 .icon {
-  transition: all 300ms linear;
-fill: #0a90eb;
+  width: 16px;
+  height: 16px;
+  fill: #1a90eb;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
 }
 
 .text {
-
+  white-space: nowrap;
+  user-select: none;
 }

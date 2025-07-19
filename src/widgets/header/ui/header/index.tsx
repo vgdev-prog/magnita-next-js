@@ -6,7 +6,6 @@ import {HeaderLogo} from "@/src/widgets/header/ui/header-logo";
 import {HeaderFactory} from "@/src/widgets/header/ui/header-factory";
 import { HeaderCalculator } from '../header-calculator';
 import { HeaderMessengers } from '../header-messengers';
-import {HeaderContacts} from "@/src/widgets/header/ui/header-contacts";
 import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu";
 import {HeaderSubmenuItem} from "@/src/widgets/header/ui/header-submenu-item";
 import {NavItem} from "@/src/widgets/header/types";
@@ -17,9 +16,10 @@ export interface HeaderProps {
 initialNavigationItems: NavItem[];
 searchButton?: ReactNode;
 languageSelect?: ReactNode;
+cartButton?: ReactNode;
 }
 
-export const Header = ({initialNavigationItems,searchButton,languageSelect}: HeaderProps) => {
+export const Header = ({initialNavigationItems,searchButton,cartButton,languageSelect}: HeaderProps) => {
 
     const {navigationItems} = useNavigation(initialNavigationItems);
 
@@ -31,16 +31,12 @@ export const Header = ({initialNavigationItems,searchButton,languageSelect}: Hea
                         <HeaderFactory/>
                         <HeaderCalculator />
                         <HeaderMessengers />
-                        <HeaderContacts onCallClick={() => {
-                            // TODO: Add send user to another page
-                            console.log('open modal')
-                        }} />
                     </div>
                 </div>
                 <div className={css.bottom_header}>
                    <div className="header__container">
                        <HeaderSubmenu links={navigationItems} Element={HeaderSubmenuItem}/>
-                        <HeaderActions search={searchButton} language={languageSelect} />
+                       <HeaderActions search={searchButton} language={languageSelect} cart={cartButton} />
                    </div>
 
                 </div>

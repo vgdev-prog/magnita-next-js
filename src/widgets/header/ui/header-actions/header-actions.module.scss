@@ -1,3 +1,15 @@
 .container {
-
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    gap: 10px;
+  }
+  
+  @media (max-width: 576px) {
+    gap: 8px;
+  }
 }
