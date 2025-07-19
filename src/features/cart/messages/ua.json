@@ -1,0 +1,20 @@
+{
+  "title": "Кошик замовлень",
+  "summary": "{count, plural, =1 {# товар} few {# товари} many {# товарів} other {# товарів}} на суму {total} грн",
+  "product": {
+    "available": "В наявності",
+    "quantity": "Кількість",
+    "total": "Всього",
+    "price": "Ціна"
+  },
+  "footer": {
+    "toPayment": "До сплати без доставки:",
+    "total": "{total} грн",
+    "continueShoppingButton": "Продовжити покупки",
+    "checkoutButton": "Оформити замовлення"
+  },
+  "empty": {
+    "title": "Кошик порожній",
+    "description": "Додайте товари до кошика, щоб зробити замовлення"
+  }
+}

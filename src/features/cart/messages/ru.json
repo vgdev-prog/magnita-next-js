@@ -1,0 +1,20 @@
+{
+  "title": "Корзина заказов",
+  "summary": "{count, plural, =1 {# товар} few {# товара} many {# товаров} other {# товаров}} на сумму {total} грн",
+  "product": {
+    "available": "В наличии",
+    "quantity": "Количество",
+    "total": "Всего",
+    "price": "Цена"
+  },
+  "footer": {
+    "toPayment": "К оплате без доставки:",
+    "total": "{total} грн",
+    "continueShoppingButton": "Продолжить покупки",
+    "checkoutButton": "Оформить заказ"
+  },
+  "empty": {
+    "title": "Корзина пуста",
+    "description": "Добавьте товары в корзину, чтобы сделать заказ"
+  }
+}

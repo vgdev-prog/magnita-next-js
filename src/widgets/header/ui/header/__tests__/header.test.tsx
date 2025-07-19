@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Header } from '../index'
+import { NavItem } from '../../../types'
 
 // Mock all header components
 jest.mock('@/src/widgets/header/ui/header-logo', () => ({
@@ -12,13 +13,11 @@ jest.mock('@/src/widgets/header/ui/header-factory', () => ({
 }))
 
 jest.mock('@/src/widgets/header/ui/header-calculator', () => ({
-  __esModule: true,
-  default: () => <div data-testid="header-calculator">Calculator</div>,
+  HeaderCalculator: () => <div data-testid="header-calculator">Calculator</div>,
 }))
 
 jest.mock('@/src/widgets/header/ui/header-messengers', () => ({
-  __esModule: true,
-  default: () => <div data-testid="header-messengers">Messengers</div>,
+  HeaderMessengers: () => <div data-testid="header-messengers">Messengers</div>,
 }))
 
 jest.mock('@/src/widgets/header/ui/header-contacts', () => ({
@@ -31,8 +30,16 @@ jest.mock('@/src/widgets/header/ui/header-contacts', () => ({
   ),
 }))
 
-jest.mock('@/src/features/navigation', () => ({
-  ClientNavigationMenu: () => <div data-testid="navigation-menu">Navigation</div>,
+jest.mock('@/src/widgets/header/ui/header-submenu', () => ({
+  HeaderSubmenu: () => <div data-testid="navigation-menu">Navigation</div>,
+}))
+
+jest.mock('@/src/widgets/header/model/use-navigation', () => ({
+  useNavigation: () => ({
+    navigationItems: [],
+    isLoading: false,
+    error: null,
+  }),
 }))
 
 // Mock console.log to test the callback
@@ -46,8 +53,13 @@ afterEach(() => {
 })
 
 describe('Header Component', () => {
+  const mockNavigationItems: NavItem[] = [
+    { id: 1, title: 'Home', href: '/' },
+    { id: 2, title: 'About', href: '/about' },
+  ]
+
   it('renders all header components', () => {
-    render(<Header />)
+    render(<Header initialNavigationItems={mockNavigationItems} />)
     
     expect(screen.getByTestId('header-logo')).toBeInTheDocument()
     expect(screen.getByTestId('header-factory')).toBeInTheDocument()
@@ -58,7 +70,7 @@ describe('Header Component', () => {
   })
 
   it('renders header with correct structure', () => {
-    const { container } = render(<Header />)
+    const { container } = render(<Header initialNavigationItems={mockNavigationItems} />)
     
     const headerElement = container.querySelector('header')
     expect(headerElement).toBeInTheDocument()
@@ -68,13 +80,10 @@ describe('Header Component', () => {
     
     const bottomHeader = container.querySelector('.bottom_header')
     expect(bottomHeader).toBeInTheDocument()
-    
-    const navElement = container.querySelector('nav')
-    expect(navElement).toBeInTheDocument()
   })
 
   it('applies correct CSS classes', () => {
-    const { container } = render(<Header />)
+    const { container } = render(<Header initialNavigationItems={mockNavigationItems} />)
     
     const headerElement = container.querySelector('header')
     expect(headerElement).toHaveClass('header')
@@ -89,14 +98,14 @@ describe('Header Component', () => {
     const bottomHeaderDiv = container.querySelector('.bottom_header')
     expect(bottomHeaderDiv).toBeInTheDocument()
     
-    const navElement = container.querySelector('nav')
-    expect(navElement).toHaveClass('header__container')
+    const headerContainerDiv = container.querySelector('.header__container')
+    expect(headerContainerDiv).toBeInTheDocument()
   })
 
   it('handles call button click', async () => {
     const user = userEvent.setup()
     
-    render(<Header />)
+    render(<Header initialNavigationItems={mockNavigationItems} />)
     
     const callButton = screen.getByTestId('call-button')
     await user.click(callButton)
@@ -105,18 +114,17 @@ describe('Header Component', () => {
   })
 
   it('renders as a semantic header element', () => {
-    render(<Header />)
+    render(<Header initialNavigationItems={mockNavigationItems} />)
     
     const headerElement = screen.getByRole('banner')
     expect(headerElement).toBeInTheDocument()
     expect(headerElement.tagName).toBe('HEADER')
   })
 
-  it('contains navigation landmark', () => {
-    render(<Header />)
+  it('contains navigation menu', () => {
+    render(<Header initialNavigationItems={mockNavigationItems} />)
     
-    const navElement = screen.getByRole('navigation')
-    expect(navElement).toBeInTheDocument()
-    expect(navElement.tagName).toBe('NAV')
+    const navigationMenu = screen.getByTestId('navigation-menu')
+    expect(navigationMenu).toBeInTheDocument()
   })
 })

@@ -1,0 +1,20 @@
+{
+  "title": "Shopping Cart",
+  "summary": "{count, plural, =1 {# item} other {# items}} for {total} UAH",
+  "product": {
+    "available": "In stock",
+    "quantity": "Quantity",
+    "total": "Total",
+    "price": "Price"
+  },
+  "footer": {
+    "toPayment": "To pay without delivery:",
+    "total": "{total} UAH",
+    "continueShoppingButton": "Continue shopping",
+    "checkoutButton": "Checkout"
+  },
+  "empty": {
+    "title": "Cart is empty",
+    "description": "Add items to cart to place an order"
+  }
+}
