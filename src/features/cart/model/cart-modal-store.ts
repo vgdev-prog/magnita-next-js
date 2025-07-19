@@ -1,14 +1,19 @@
 import { create } from 'zustand'
 
 interface CartModalState {
-  isOpen: boolean
-  searchQuery: string
+  isOpen: boolean;
+    products: Array<{
+        id: string;
+        name: string;
+        price: number;
+        image: string;
+        quantity: number;
+    }>;
 }
 
 interface CartModalActions {
   openModal: () => void
   closeModal: () => void
-  setCartQuery: (query: string) => void
   clearCart: () => void
 }
 
@@ -16,7 +21,7 @@ type CartModalStore = CartModalState & CartModalActions
 
 const initialState: CartModalState = {
   isOpen: false,
-  searchQuery: '',
+  products: [],
 }
 
 export const useCartModalStore = create<CartModalStore>((set) => ({
@@ -27,10 +32,8 @@ export const useCartModalStore = create<CartModalStore>((set) => ({
   },
   
   closeModal: () => set({ isOpen: false }),
-  
-  setCartQuery: (query: string) => set({ searchQuery: query }),
 
   clearCart: () => set({
-    searchQuery: '',
+    products: [],
   }),
 }))
