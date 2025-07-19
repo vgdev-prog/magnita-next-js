@@ -1,12 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { TelegramButton } from '../index'
 
-// Mock next-intl
 jest.mock('next-intl', () => ({
   useLocale: () => 'ua',
 }))
 
-// Mock next/link
 jest.mock('next/link', () => {
   return function MockLink({ children, href, target, className }: {
     children: React.ReactNode;
@@ -22,7 +20,6 @@ jest.mock('next/link', () => {
   }
 })
 
-// Mock TelegramIcon
 jest.mock('@/src/shared', () => ({
   TelegramIcon: ({ className }: { className?: string }) => (
     <svg data-testid="telegram-icon" className={className}>
@@ -88,7 +85,6 @@ describe('TelegramButton Component', () => {
     const linkElement = screen.getByRole('link')
     expect(linkElement).toBeInTheDocument()
     
-    // Should contain both icon and text for accessibility
     const iconElement = container.querySelector('svg')
     const textElement = screen.getByText('Telegram')
     
@@ -97,11 +93,8 @@ describe('TelegramButton Component', () => {
   })
 
   it('uses useLocale hook', () => {
-    // This test ensures the component calls useLocale
-    // The mock will verify it's being called
     render(<TelegramButton />)
     
-    // If useLocale wasn't called, the component would fail to render
     expect(screen.getByRole('link')).toBeInTheDocument()
   })
 

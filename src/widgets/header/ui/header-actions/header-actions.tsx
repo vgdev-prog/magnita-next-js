@@ -11,10 +11,10 @@ burger?: ReactNode;
 export const HeaderActions = ({search,language,cart,burger}: HeaderActionsProps) => {
     return (
         <div className={css.actions}>
-            {burger}
             {search}
             {language}
             {cart}
+            {burger}
         </div>
     );
 };

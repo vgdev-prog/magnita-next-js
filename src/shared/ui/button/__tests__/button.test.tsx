@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Button } from '../index'
 
-// Mock the routing module
 jest.mock('@/src/app/i18n/routing', () => ({
   Link: ({ children, href, ...props }: {
     children: React.ReactNode;

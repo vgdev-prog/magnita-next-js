@@ -1,16 +1,14 @@
 import { screen } from '@testing-library/react';
-import { render } from '@/src/shared/lib/test-utils'; // 1. Импортируем наш кастомный рендер
-import { HeaderSubmenuItem } from '..'; // Предполагается, что index.ts экспортирует компонент
+import { render } from '@/src/shared/lib/test-utils';
+import { HeaderSubmenuItem } from '..';
 import { NavItem } from '@/src/widgets/header/types';
 
-// 2. Мокировать next/navigation все еще полезно для контроля над роутером в тестах
 jest.mock('next/navigation', () => ({
     useRouter: jest.fn(),
-    usePathname: () => '/', // Возвращаем базовый путь
+    usePathname: () => '/',
 }));
 
 describe('HeaderSubmenuItem', () => {
-    // 3. Используем актуальный тип
     const mockItem: NavItem = {
         id: 1,
         title: 'Home',
@@ -18,7 +16,6 @@ describe('HeaderSubmenuItem', () => {
     };
 
     it('renders navigation item with correct content', () => {
-        // 4. Используем наш новый рендер. Предупреждение должно исчезнуть.
         render(<HeaderSubmenuItem item={mockItem} />);
 
         const linkElement = screen.getByRole('link', { name: /Home/i });
@@ -28,7 +25,6 @@ describe('HeaderSubmenuItem', () => {
 
     it('renders as a list item', () => {
         render(<HeaderSubmenuItem item={mockItem} />);
-        // Ищем по роли, это более устойчиво к изменениям разметки
         const listItem = screen.getByRole('listitem');
         expect(listItem).toBeInTheDocument();
     });

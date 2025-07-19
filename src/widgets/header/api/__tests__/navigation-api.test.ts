@@ -2,7 +2,6 @@ import axios from 'axios'
 import { fetchClientNavigation } from '../navigation-api'
 import { NavItem } from '../../types'
 
-// Mock axios
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
 
@@ -119,7 +118,6 @@ describe('Navigation API', () => {
 
       const result = await fetchClientNavigation()
 
-      // TypeScript compilation will fail if types don't match
       expect(typeof result[0].id).toBe('number')
       expect(typeof result[0].title).toBe('string')
       expect(typeof result[0].href).toBe('string')

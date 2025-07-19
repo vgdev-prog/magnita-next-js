@@ -2,7 +2,6 @@ import { render, screen } from '@testing-library/react'
 import { Header } from '../index'
 import { NavItem } from '../../../types'
 
-// Mock all header components
 jest.mock('@/src/widgets/header/ui/header-logo', () => ({
   HeaderLogo: () => <div data-testid="header-logo">Logo</div>,
 }))

@@ -397,7 +397,6 @@
   left: 100%;
 }
 
-/* Отключаем блик для желто-оранжевых кнопок */
 .btnO:not(.green) .btnBlick {
   display: none;
 }
@@ -435,7 +434,6 @@
   font-size: 14px;
 }
 
-/* Scrollbar styling */
 .productsBlock::-webkit-scrollbar {
   width: 6px;
 }
@@ -500,7 +498,6 @@
   }
 }
 
-/* Animation for items */
 .item {
   animation: fadeInUp 0.5s ease forwards;
   opacity: 0;

@@ -10,7 +10,6 @@
   justify-content: center;
   position: relative;
   
-  // Hide on desktop (998px and above)
   @media (min-width: 998px) {
     display: none;
   }
@@ -28,7 +27,6 @@
     transform: translateY(0);
   }
   
-  // Responsive adjustments
   @media (max-width: 768px) {
     padding: 6px;
   }
@@ -70,7 +68,6 @@
   }
 }
 
-// Burger animation when open
 .burgerLinesOpen {
   .line {
     background: #f59211;
@@ -106,7 +103,6 @@
   }
 }
 
-// Additional hover effects
 .burgerButton:hover .burgerLines:not(.burgerLinesOpen) .line {
   &:nth-child(1) {
     transform: translateY(-1px);

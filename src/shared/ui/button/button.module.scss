@@ -26,7 +26,6 @@
   backdrop-filter: blur(10px);
 }
 
-/* Элегантный блик */
 .button::before {
   content: "";
   position: absolute;
@@ -48,7 +47,6 @@
   left: 100%;
 }
 
-/* Эффекты при наведении и нажатии */
 .button:hover {
   background: linear-gradient(135deg, #ffff00 0%, #f59211 30%, #e68000 100%);
   box-shadow: 
@@ -77,7 +75,6 @@
     0 0 0 3px rgba(245, 146, 17, 0.3);
 }
 
-/* Отключенное состояние */
 .button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
@@ -85,7 +82,6 @@
   pointer-events: none;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
   .button {
     padding: 12px 24px;

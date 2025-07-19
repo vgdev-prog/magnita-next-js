@@ -7,7 +7,6 @@
   border-radius: 8px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
-  // Extended hover area for dropdown navigation
   &:hover .dropdown,
   .dropdown:hover {
     display: block;
@@ -154,7 +153,6 @@
   }
 }
 
-// Dropdown Menu Styles
 .dropdown {
   position: absolute;
   top: 100%;
@@ -164,7 +162,6 @@
   margin-top: 2px;
   animation: dropdownFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
-  // Create safe hover zone
   &::after {
     content: "";
     position: absolute;
@@ -204,7 +201,6 @@
     0 8px 16px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   
-  // Responsive dropdown width
   @media (max-width: 768px) {
     min-width: 180px;
     border-radius: 8px;
@@ -265,7 +261,6 @@
     background: rgba(245, 146, 17, 0.2);
   }
   
-  // Responsive dropdown items
   @media (max-width: 768px) {
     padding: 10px 16px;
     font-size: 13px;
@@ -282,7 +277,6 @@
   }
 }
 
-// Dropdown Animation
 @keyframes dropdownFadeIn {
   0% {
     opacity: 0;
