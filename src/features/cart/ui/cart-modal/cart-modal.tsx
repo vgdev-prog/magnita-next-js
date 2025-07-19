@@ -6,9 +6,7 @@ import {useLocale, useTranslations} from "next-intl";
 import {useState} from "react";
 import {Link} from "@/src/app/i18n/routing";
 import Image from "next/image";
-interface CartModalProps {
-
-}
+interface CartModalProps extends Record<string, never> {}
 
 export const CartModal = ({}: CartModalProps) => {
     const locale = useLocale();
