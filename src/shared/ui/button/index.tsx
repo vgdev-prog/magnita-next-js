@@ -5,6 +5,7 @@ import css from './button.module.scss'
 
 interface BaseButtonProps {
     className?: string;
+    locale?: string;
 }
 
 interface ButtonAsButtonProps extends BaseButtonProps, ButtonHTMLAttributes<HTMLButtonElement> {
@@ -19,10 +20,10 @@ interface ButtonAsLinkProps extends BaseButtonProps, AnchorHTMLAttributes<HTMLAn
 
 type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 
-export const Button = ({asLink,className,children,href,...props}: ButtonProps) => {
+export const Button = ({asLink,className,children,href,locale,...props}: ButtonProps) => {
     if (asLink) {
        return (
-           <Link href={href} className={clsx(className,css.button)} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}>
+           <Link href={href} locale={locale} className={clsx(className,css.button)} {...(props as AnchorHTMLAttributes<HTMLAnchorElement>)}>
                {children}
            </Link>
        )
