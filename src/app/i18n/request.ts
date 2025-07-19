@@ -9,11 +9,12 @@ export default getRequestConfig(async ({requestLocale}) => {
 
     const coreMessages = (await import(`@/src/app/messages/${locale}.json`)).default
     const headerMessages = (await import(`@/src/widgets/header/messages/${locale}.json`)).default
-
+    const cartMessages = (await import(`@/src/features/cart/messages/${locale}.json`)).default
 
     const messages = {
         ...coreMessages,
-        header: headerMessages
+        header: headerMessages,
+        cart: cartMessages
     }
 
 
