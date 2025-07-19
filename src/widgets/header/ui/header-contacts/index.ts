@@ -1,0 +1,1 @@
+export {HeaderContacts} from './header-contacts';

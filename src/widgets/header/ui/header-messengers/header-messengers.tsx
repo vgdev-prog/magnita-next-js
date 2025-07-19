@@ -6,7 +6,7 @@ export interface HeaderMessengersProps {
 
 }
 
-const HeaderMessengers = ({}: HeaderMessengersProps) => {
+export const HeaderMessengers = ({}: HeaderMessengersProps) => {
     const t = useTranslations('header')
     return (
         <div className={css.messengers}>
@@ -18,5 +18,3 @@ const HeaderMessengers = ({}: HeaderMessengersProps) => {
         </div>
     );
 };
-
-export default HeaderMessengers;

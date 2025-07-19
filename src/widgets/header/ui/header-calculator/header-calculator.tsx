@@ -7,7 +7,7 @@ export interface HeaderCalculatorProps {
 
 }
 
-const HeaderCalculator = ({}: HeaderCalculatorProps) => {
+export const HeaderCalculator = ({}: HeaderCalculatorProps) => {
     const locale = useLocale();
     const t = useTranslations('header')
     return (
@@ -18,5 +18,3 @@ const HeaderCalculator = ({}: HeaderCalculatorProps) => {
         </Button>
     );
 };
-
-export default HeaderCalculator;
