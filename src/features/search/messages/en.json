@@ -1,0 +1,15 @@
+{
+  "title": "What are you looking for?",
+  "subtitle": "Find protective shutters, gates and accessories",
+  "placeholder": "I'm looking for protective shutters...",
+  "popular_queries": "Popular queries:",
+  "suggestions": {
+    "shutters": "Protective shutters",
+    "gates": "Roller gates",
+    "grilles": "Rolling grilles",
+    "blinds": "Blinds", 
+    "accessories": "Accessories",
+    "installation": "Installation"
+  },
+  "tip_text": "Press <close>Esc</close> to close or <search>Enter</search> to search"
+}
