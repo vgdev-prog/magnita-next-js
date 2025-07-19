@@ -1,6 +1,6 @@
 export type NavItem = {
     id: number;
-    label: string;
-    url: string;
+    title: string;
+    href: string;
     children?: NavItem[]
 }
