@@ -14,7 +14,7 @@ interface CartProduct {
     quantity: number;
 }
 
-interface CartModalProps extends Record<string, never> {}
+type CartModalProps = Record<string, never>
 
 export const CartModal = ({}: CartModalProps) => {
     const locale = useLocale();
