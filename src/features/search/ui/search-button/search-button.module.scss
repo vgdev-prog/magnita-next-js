@@ -1,0 +1,48 @@
+.searchButton {
+  background: transparent;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:hover {
+    background: rgba(245, 146, 17, 0.1);
+    transform: translateY(-1px);
+    
+    svg {
+      fill: #f59211;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  svg {
+    fill: rgba(255, 255, 255, 0.8);
+    transition: fill 0.3s ease;
+  }
+  
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 6px;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    padding: 4px;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
