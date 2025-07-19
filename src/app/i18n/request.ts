@@ -9,13 +9,11 @@ export default getRequestConfig(async ({requestLocale}) => {
 
     const coreMessages = (await import(`@/src/app/messages/${locale}.json`)).default
     const headerMessages = (await import(`@/src/widgets/header/messages/${locale}.json`)).default
-    const searchMessages = (await import(`@/src/features/search/messages/${locale}.json`)).default
 
 
     const messages = {
         ...coreMessages,
-        header: headerMessages,
-        search: searchMessages
+        header: headerMessages
     }
 
 
