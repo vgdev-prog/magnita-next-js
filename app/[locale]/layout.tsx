@@ -5,6 +5,7 @@ import {routing} from "@/src/app/i18n/routing";
 import {Header} from "@/src/widgets";
 import '@/src/app/styles/index.scss'
 import {Provider} from "@/src/app/providers";
+import {fetchClientNavigation} from "@/src/widgets/header";
 
 interface RootLayoutProps {
     children: ReactNode;
@@ -15,6 +16,8 @@ export default async function RootLayout({
                                              params
                                          }: RootLayoutProps) {
     const {locale} = await params;
+    const initialNavigation = await fetchClientNavigation();
+
     if (!routing.locales.includes(locale as any)) {
         notFound()
     }
@@ -25,7 +28,7 @@ export default async function RootLayout({
         <body>
         <Provider>
             <div id="app">
-                <Header/>
+                <Header initialNavigationItems={initialNavigation}/>
                 {children}
             </div>
         </Provider>
