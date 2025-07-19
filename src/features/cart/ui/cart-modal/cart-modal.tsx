@@ -1,10 +1,15 @@
+"use client"
 import css from './cart-modal.module.scss'
 import clsx from "clsx";
+import {useCartModalStore} from "@/src/features/cart/model";
+import {useTranslations} from "next-intl";
 interface CartModalProps {
 
 }
 
 export const CartModal = ({}: CartModalProps) => {
+    const { isOpen , closeModal} = useCartModalStore();
+    const t = useTranslations('cart');
     return (
         <>
             <div
@@ -12,17 +17,18 @@ export const CartModal = ({}: CartModalProps) => {
             ></div>
 
             <div
-                className={clsx(css.basketContainer, css.show)}
+                className={clsx(css.basketContainer, {[css.show]:isOpen})}
             >
                 <div className={css.inner}>
                     <button
+                        onClick={closeModal}
                         className={css.close}
                     >×
                     </button>
 
                     <div className={css.topLine}>
-                        <h2 className={css.titleBasket}>Кошик замовлень</h2>
-                        <div className={css.cartSummary}>1 товар на суму 4764 грн</div>
+                        <h2 className={css.titleBasket}>{t('title')}</h2>
+                        <div className={css.cartSummary}>{t('summary', {count: 1, total: 4764})}</div>
                     </div>
 
                     <div className={css.productsBlock}>
@@ -36,14 +42,14 @@ export const CartModal = ({}: CartModalProps) => {
                                 </a>
                                 <div className={css.productInfo}>
                                     <a className={css.productName}>Захисні ролети на вікна 1200х1200 мм РА45</a>
-                                    <p className={css.available}>В наявності</p>
+                                    <p className={css.available}>{t('product.available')}</p>
                                     <p className={css.price}>Ціна: 4764 грн/од.</p>
                                 </div>
                             </div>
 
                             <div className={css.itemControls}>
                                 <div className={css.qty}>
-                                    <p className={css.title}>Кількість</p>
+                                    <p className={css.title}>{t('product.quantity')}</p>
                                     <div className={css.counter}>
                                         <svg
                                             viewBox="0 0 20 20"
@@ -68,7 +74,7 @@ export const CartModal = ({}: CartModalProps) => {
                                 </div>
 
                                 <div className={css.productTotal}>
-                                    <p className={css.title}>Сума</p>
+                                    <p className={css.title}>{t('product.total')}</p>
                                     <span className={css.value}>4764 грн</span>
                                 </div>
 
@@ -90,19 +96,19 @@ export const CartModal = ({}: CartModalProps) => {
                     </div>
 
                     <div className={css.cartFooter}>
-                        <p className={css.toPayment}>До сплати без доставки:</p>
-                        <p className={css.basketTotal}>4764 грн</p>
+                        <p className={css.toPayment}>{t('footer.toPayment')}</p>
+                        <p className={css.basketTotal}>{t('footer.total', {total: 4764})}</p>
                         <div className={css.basketBtn}>
                             <a
-                                className={css.green}
+                                className={clsx(css.green, css.btnO)}
                                 href="#"
-                            >Продовжити покупки</a>
+                            >{t('footer.continueShoppingButton')}</a>
                             <a
                                 href="/ua/basket"
                                 className={css.btnO}
                             >
                                 <span className={css.btnBlick}></span>
-                                Оформити замовлення
+                                {t('footer.checkoutButton')}
                             </a>
                         </div>
                     </div>
