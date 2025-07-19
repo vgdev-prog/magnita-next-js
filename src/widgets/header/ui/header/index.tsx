@@ -31,12 +31,12 @@ export const Header = ({initialNavigationItems,searchButton,cartButton,languageS
                         <HeaderFactory/>
                         <HeaderCalculator />
                         <HeaderMessengers />
+                        <HeaderActions search={searchButton} language={languageSelect} cart={cartButton} />
                     </div>
                 </div>
                 <div className={css.bottom_header}>
                    <div className="header__container">
                        <HeaderSubmenu links={navigationItems} Element={HeaderSubmenuItem}/>
-                       <HeaderActions search={searchButton} language={languageSelect} cart={cartButton} />
                    </div>
 
                 </div>
