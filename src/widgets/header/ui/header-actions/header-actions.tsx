@@ -9,7 +9,7 @@ cart?: ReactNode;
 
 export const HeaderActions = ({search,language,cart}: HeaderActionsProps) => {
     return (
-        <div className={css.container}>
+        <div className={css.actions}>
             {search}
             {language}
             {cart}
