@@ -6,7 +6,7 @@ import HeaderCalculator from "@/src/widgets/header/ui/header-calculator";
 import HeaderMessengers from "@/src/widgets/header/ui/header-messengers";
 import {HeaderContacts} from "@/src/widgets/header/ui/header-contacts";
 import clsx from "clsx";
-import {ClientNavigationMenu} from "@/src/features/navigation";
+import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu";
 
 export interface HeaderProps {
 
@@ -29,7 +29,7 @@ export const Header = ({}: HeaderProps) => {
                 </div>
                 <div className={css.bottom_header}>
                    <nav className="header__container">
-                       <ClientNavigationMenu />
+                       <HeaderSubmenu />
                    </nav>
                 </div>
         </header>

@@ -1,12 +1,13 @@
 import { Link } from "@/src/app/i18n/routing";
 import {useLocale, useTranslations} from "next-intl";
 import {ClientRoute} from "@/src/features/navigation/client/types";
-import css from './client-navigation-item.module.scss'
+import css from './header-submenu-item.module.scss'
+
 interface ClientNavigationLinkProps {
 link: ClientRoute
 }
 
-export const ClientNavigationItem = ({link}: ClientNavigationLinkProps) => {
+export const HeaderSubmenuItem = ({link}: ClientNavigationLinkProps) => {
     const locale = useLocale();
     const t = useTranslations();
     return (
