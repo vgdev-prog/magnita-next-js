@@ -3,12 +3,14 @@ import css from './cart-modal.module.scss'
 import clsx from "clsx";
 import {useCartModalStore} from "@/src/features/cart/model";
 import {useTranslations} from "next-intl";
+import {useState} from "react";
 interface CartModalProps {
 
 }
 
 export const CartModal = ({}: CartModalProps) => {
     const { isOpen , closeModal} = useCartModalStore();
+    const [count, setCount] = useState<number>(1)
     const t = useTranslations();
     return (
         <>
@@ -60,7 +62,8 @@ export const CartModal = ({}: CartModalProps) => {
                                         </svg>
                                         <input
                                             type="number"
-                                            value="1"
+                                            value={count}
+                                            onChange={(e) => setCount(Number(e.target.value))}
                                             min="1"
                                         />
                                         <svg
@@ -75,7 +78,7 @@ export const CartModal = ({}: CartModalProps) => {
 
                                 <div className={css.productTotal}>
                                     <p className={css.title}>{t('cart.product.total')}</p>
-                                    <span className={css.value}>4764 грн</span>
+                                    <span className={css.value}>4764 {t('uah')}</span>
                                 </div>
 
                                 <div
