@@ -10,6 +10,7 @@ import {SearchModal} from "@/src/features/search/ui/search-modal";
 import {CartButton} from "@/src/features/cart";
 import {CartModal} from "@/src/features/cart/ui/cart-modal";
 import {LanguageSwitcher} from "@/src/features/language-switcher";
+import {BurgerButton} from "@/src/features/burger-menu";
 
 interface RootLayoutProps {
     children: ReactNode;
@@ -34,6 +35,7 @@ export default async function RootLayout({
             <div id="app">
                 <Header 
                     initialNavigationItems={initialNavigation} 
+                    burgerButton={<BurgerButton />}
                     searchButton={<SearchButton />} 
                     cartButton={<CartButton />}
                     languageSelect={<LanguageSwitcher />}

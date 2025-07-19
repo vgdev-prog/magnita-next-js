@@ -17,9 +17,10 @@ initialNavigationItems: NavItem[];
 searchButton?: ReactNode;
 languageSelect?: ReactNode;
 cartButton?: ReactNode;
+burgerButton?: ReactNode;
 }
 
-export const Header = ({initialNavigationItems,searchButton,cartButton,languageSelect}: HeaderProps) => {
+export const Header = ({initialNavigationItems,searchButton,cartButton,languageSelect,burgerButton}: HeaderProps) => {
 
     const {navigationItems} = useNavigation(initialNavigationItems);
 
@@ -31,7 +32,7 @@ export const Header = ({initialNavigationItems,searchButton,cartButton,languageS
                         <HeaderFactory/>
                         <HeaderCalculator />
                         <HeaderMessengers />
-                        <HeaderActions search={searchButton} language={languageSelect} cart={cartButton} />
+                        <HeaderActions burger={burgerButton} search={searchButton} language={languageSelect} cart={cartButton} />
                     </div>
                 </div>
                 <div className={css.bottom_header}>
