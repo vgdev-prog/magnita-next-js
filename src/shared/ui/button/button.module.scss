@@ -1,48 +1,95 @@
 .button {
   position: relative;
   overflow: hidden;
-  background-color: orange;
-  background-image: linear-gradient(#ff0, 20%, orange);
-  border-radius: 24px;
-  box-shadow: 0 43px 101px rgba(120,136,255,.2), 0 4px 0 #f59211, inset 0 0 15px orange;
+  background: linear-gradient(135deg, #ffff00 0%, #f59211 50%, #e68000 100%);
+  border-radius: 16px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 
+    0 8px 32px rgba(245, 146, 17, 0.3),
+    0 4px 12px rgba(255, 255, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   color: #282828;
   cursor: pointer;
   display: inline-block;
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   border: none;
   text-align: center;
-  transition: all .3s ease;
+  text-decoration: none;
+  padding: 14px 28px;
+  min-height: 48px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateZ(0);
+  backdrop-filter: blur(10px);
 }
 
-/* Псевдоэлемент блика */
+/* Элегантный блик */
 .button::before {
   content: "";
   position: absolute;
   top: 0;
-  left: -75%;
-  width: 50%;
+  left: -100%;
+  width: 100%;
   height: 100%;
   background: linear-gradient(
-                  120deg,
-                  rgba(255, 255, 255, 0.2) 0%,
-                  rgba(255, 255, 255, 0.6) 50%,
-                  rgba(255, 255, 255, 0.2) 100%
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 100%
   );
-  transform: skewX(-20deg);
-  animation: shine 2.5s infinite;
+  transition: left 0.6s ease;
+  pointer-events: none;
 }
 
-@keyframes shine {
-  0% {
-    left: -75%;
-  }
-  100% {
-    left: 125%;
-  }
+.button:hover::before {
+  left: 100%;
 }
 
-/* При наведении немного изменим фон */
+/* Эффекты при наведении и нажатии */
 .button:hover {
-  background-image: linear-gradient(#ff0, 0, orange);
+  background: linear-gradient(135deg, #ffff00 0%, #f59211 30%, #e68000 100%);
+  box-shadow: 
+    0 12px 40px rgba(245, 146, 17, 0.4),
+    0 6px 20px rgba(255, 255, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 
+    0 4px 16px rgba(245, 146, 17, 0.3),
+    0 2px 8px rgba(255, 255, 0, 0.2),
+    inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 
+    0 8px 32px rgba(245, 146, 17, 0.3),
+    0 4px 12px rgba(255, 255, 0, 0.2),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 0 0 3px rgba(245, 146, 17, 0.3);
+}
+
+/* Отключенное состояние */
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  pointer-events: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .button {
+    padding: 12px 24px;
+    font-size: 14px;
+    min-height: 44px;
+  }
 }
