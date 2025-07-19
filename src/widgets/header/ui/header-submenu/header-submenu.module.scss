@@ -1,7 +1,65 @@
 .menu {
   display: flex;
-  gap: 20px;
+  column-gap: 20px;
   align-items: center;
-  justify-content: space-between;
-  width: 80%;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  transition: all 0.3s ease;
+  
+  // Tablet breakpoint
+  @media (max-width: 1024px) {
+    width: 90%;
+    gap: 16px;
+    justify-content: center;
+  }
+  
+  // Mobile landscape breakpoint
+  @media (max-width: 768px) {
+    width: 95%;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  // Mobile portrait breakpoint
+  @media (max-width: 576px) {
+    width: 100%;
+    gap: 8px;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 8px;
+  }
+  
+  // Very small screens
+  @media (max-width: 480px) {
+    gap: 6px;
+    padding: 0 4px;
+    justify-content: center;
+    
+    li {
+      flex: 0 0 auto;
+      min-width: 0;
+      max-width: calc(50% - 3px);
+      
+      // If odd number of items, center the last one
+      &:last-child:nth-child(odd) {
+        flex: 0 0 auto;
+        max-width: none;
+      }
+    }
+  }
+  
+  // Ultra small screens
+  @media (max-width: 360px) {
+    flex-direction: column;
+    gap: 4px;
+    width: 100%;
+    
+    li {
+      max-width: 100%;
+      flex-basis: auto;
+    }
+  }
 }
