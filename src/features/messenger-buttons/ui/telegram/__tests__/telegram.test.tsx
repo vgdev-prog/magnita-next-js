@@ -8,7 +8,12 @@ jest.mock('next-intl', () => ({
 
 // Mock next/link
 jest.mock('next/link', () => {
-  return function MockLink({ children, href, target, className }: any) {
+  return function MockLink({ children, href, target, className }: {
+    children: React.ReactNode;
+    href: string;
+    target?: string;
+    className?: string;
+  }) {
     return (
       <a href={href} target={target} className={className}>
         {children}

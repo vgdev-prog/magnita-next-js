@@ -10,7 +10,12 @@ jest.mock('next-intl', () => ({
 
 // Mock the routing module
 jest.mock('@/src/app/i18n/routing', () => ({
-  Link: ({ children, href, locale, ...props }: any) => (
+  Link: ({ children, href, locale, ...props }: {
+    children: React.ReactNode;
+    href: string;
+    locale?: string;
+    [key: string]: unknown;
+  }) => (
     <a href={href} data-locale={locale} {...props}>
       {children}
     </a>

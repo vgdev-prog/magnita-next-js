@@ -1,4 +1,4 @@
-import { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
+import { AnchorHTMLAttributes, ButtonHTMLAttributes } from "react";
 import { Link } from "@/src/app/i18n/routing";
 import clsx from "clsx";
 import css from './button.module.scss'

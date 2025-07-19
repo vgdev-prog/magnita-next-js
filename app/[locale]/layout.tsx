@@ -1,7 +1,6 @@
-import {NextIntlClientProvider} from 'next-intl';
 import React, {ReactNode} from "react";
 import {notFound} from "next/navigation";
-import {routing} from "@/src/app/i18n/routing";
+import {routing, type Locale} from "@/src/app/i18n/routing";
 import {Header} from "@/src/widgets";
 import '@/src/app/styles/index.scss'
 import {Provider} from "@/src/app/providers";
@@ -18,7 +17,7 @@ export default async function RootLayout({
     const {locale} = await params;
     const initialNavigation = await fetchClientNavigation();
 
-    if (!routing.locales.includes(locale as any)) {
+    if (!routing.locales.includes(locale as Locale)) {
         notFound()
     }
 

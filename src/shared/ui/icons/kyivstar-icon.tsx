@@ -3,7 +3,7 @@ size?: number;
 className?: string;
 }
 
-export const KyivstarIcon = ({className,size=19}: KyivstarProps) => {
+export const KyivstarIcon = ({className,size=19}: KyivstarIconProps) => {
     return (
         <svg
             className={className}

@@ -4,7 +4,11 @@ import { Button } from '../index'
 
 // Mock the routing module
 jest.mock('@/src/app/i18n/routing', () => ({
-  Link: ({ children, href, ...props }: any) => (
+  Link: ({ children, href, ...props }: {
+    children: React.ReactNode;
+    href: string;
+    [key: string]: unknown;
+  }) => (
     <a href={href} {...props}>
       {children}
     </a>

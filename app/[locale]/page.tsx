@@ -44,7 +44,6 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
 
 export default async function Home() {
-    const t = await getTranslations()
     return (
         <div>
 1111
