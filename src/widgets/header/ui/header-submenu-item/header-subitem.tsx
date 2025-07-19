@@ -12,7 +12,7 @@ export const HeaderSubmenuItem = ({item}: ClientNavigationLinkProps) => {
     const t = useTranslations();
     return (
         <li className={css.item}>
-            <Link href={item.url} locale={locale}>{t(item.label)}</Link>
+            <Link href={item.href} locale={locale}>{item.title}</Link>
         </li>
     );
 };

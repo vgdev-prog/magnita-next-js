@@ -9,14 +9,15 @@ import { HeaderMessengers } from '../header-messengers';
 import {HeaderContacts} from "@/src/widgets/header/ui/header-contacts";
 import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu";
 import {HeaderSubmenuItem} from "@/src/widgets/header/ui/header-submenu-item";
+import {NavItem} from "@/src/widgets/header/types";
 
 export interface HeaderProps {
-
+initialNavigationItems: NavItem[];
 }
 
-export const Header = ({}: HeaderProps) => {
+export const Header = ({initialNavigationItems}: HeaderProps) => {
 
-    const {navigationItems} = useNavigation();
+    const {navigationItems} = useNavigation(initialNavigationItems);
 
     return (
         <header className={css.header}>
