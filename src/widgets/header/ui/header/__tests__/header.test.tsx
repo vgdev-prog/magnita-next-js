@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { Header } from '../index'
 import { NavItem } from '../../../types'
 
@@ -20,14 +19,8 @@ jest.mock('@/src/widgets/header/ui/header-messengers', () => ({
   HeaderMessengers: () => <div data-testid="header-messengers">Messengers</div>,
 }))
 
-jest.mock('@/src/widgets/header/ui/header-contacts', () => ({
-  HeaderContacts: ({ onCallClick }: { onCallClick: () => void }) => (
-    <div data-testid="header-contacts">
-      <button onClick={onCallClick} data-testid="call-button">
-        Call
-      </button>
-    </div>
-  ),
+jest.mock('@/src/widgets/header/ui/header-actions', () => ({
+  HeaderActions: () => <div data-testid="header-actions">Actions</div>,
 }))
 
 jest.mock('@/src/widgets/header/ui/header-submenu', () => ({
@@ -42,15 +35,6 @@ jest.mock('@/src/widgets/header/model/use-navigation', () => ({
   }),
 }))
 
-// Mock console.log to test the callback
-const originalConsoleLog = console.log
-beforeEach(() => {
-  console.log = jest.fn()
-})
-
-afterEach(() => {
-  console.log = originalConsoleLog
-})
 
 describe('Header Component', () => {
   const mockNavigationItems: NavItem[] = [
@@ -65,7 +49,7 @@ describe('Header Component', () => {
     expect(screen.getByTestId('header-factory')).toBeInTheDocument()
     expect(screen.getByTestId('header-calculator')).toBeInTheDocument()
     expect(screen.getByTestId('header-messengers')).toBeInTheDocument()
-    expect(screen.getByTestId('header-contacts')).toBeInTheDocument()
+    expect(screen.getByTestId('header-actions')).toBeInTheDocument()
     expect(screen.getByTestId('navigation-menu')).toBeInTheDocument()
   })
 
@@ -102,15 +86,11 @@ describe('Header Component', () => {
     expect(headerContainerDiv).toBeInTheDocument()
   })
 
-  it('handles call button click', async () => {
-    const user = userEvent.setup()
-    
+  it('renders header actions', () => {
     render(<Header initialNavigationItems={mockNavigationItems} />)
     
-    const callButton = screen.getByTestId('call-button')
-    await user.click(callButton)
-    
-    expect(console.log).toHaveBeenCalledWith('open modal')
+    const headerActions = screen.getByTestId('header-actions')
+    expect(headerActions).toBeInTheDocument()
   })
 
   it('renders as a semantic header element', () => {
