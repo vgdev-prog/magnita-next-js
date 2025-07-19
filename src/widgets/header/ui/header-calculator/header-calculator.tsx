@@ -3,11 +3,8 @@ import {useLocale, useTranslations} from "next-intl";
 import Image from "next/image";
 import css from './header-calculator.module.scss'
 import calculatorImg from '@/src/widgets/header/assets/calculator.webp'
-export interface HeaderCalculatorProps {
 
-}
-
-export const HeaderCalculator = ({}: HeaderCalculatorProps) => {
+export const HeaderCalculator = () => {
     const locale = useLocale();
     const t = useTranslations('header')
     return (
