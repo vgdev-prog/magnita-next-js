@@ -1,175 +1,206 @@
 {
-  "navigation": [
+  "header-navigation": [
     {
       "id": 1,
-      "label": "main",
-      "url": "/"
+      "title": "Головна",
+      "href": "/"
     },
     {
       "id": 2,
-      "label": "catalog_head",
-      "url": "/catalog",
+      "title": "Каталог",
+      "href": "/catalog",
       "children": [
         {
-          "id": 3,
-          "label": "",
-          "url": "",
-          "children": [
-            {
-              "id": 4,
-              "label": "category_1",
-              "url": "/protective-roller-shutters",
-              "img": "/img/categories/1s.jpg.webp"
-            },
-            {
-              "id": 5,
-              "label": "transparent_title",
-              "url": "/transparent-shutters",
-              "img": "/img/categories/5c.jpg.webp"
-            },
-            {
-              "id": 6,
-              "label": "category_2",
-              "url": "/blinds-desc",
-              "img": "/img/categories/2c.jpg.webp"
-            },
-            {
-              "id": 7,
-              "label": "category_3",
-              "url": "/shrutters-individual",
-              "img": "/img/categories/10c.jpg.webp"
-            },
-            {
-              "id": 8,
-              "label": "category_13",
-              "url": "/shutters-kombi",
-              "img": "/img/categories/13.jpg.webp"
-            },
-            {
-              "id": 9,
-              "label": "category_4",
-              "url": "/shutters-gates-desc",
-              "img": "/img/categories/3c.jpg.webp"
-            },
-            {
-              "id": 10,
-              "label": "rol-vorota",
-              "url": "/roletni-vorota",
-              "img": "/img/categories/4c.jpg.webp"
-            },
-            {
-              "id": 11,
-              "label": "category_6",
-              "url": "/sliding-gate",
-              "img": "/img/categories/5s.jpg.webp"
-            },
-            {
-              "id": 12,
-              "label": "category_7",
-              "url": "#",
-              "img": "/img/categories/6.jpg.webp",
-              "disabled": true,
-              "under_construction_label": "section_under_construction"
-            },
-            {
-              "id": 13,
-              "label": "category_8",
-              "url": "/zhalyuzi",
-              "img": "/img/categories/7.webp.webp"
-            },
-            {
-              "id": 14,
-              "label": "category_9",
-              "url": "#",
-              "img": "/img/categories/8.jpg.webp",
-              "disabled": true,
-              "under_construction_label": "section_under_construction"
-            },
-            {
-              "id": 15,
-              "label": "category_10",
-              "url": "/product-parts",
-              "img": "/img/categories/11.jpg.webp"
-            },
-            {
-              "id": 16,
-              "label": "category_11",
-              "url": "/sop-product",
-              "img": "/img/categories/9.jpg.webp"
-            },
-            {
-              "id": 17,
-              "label": "category_12",
-              "url": "/avtomatika-desc",
-              "img": "/img/categories/12c.jpg.webp"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 18,
-      "label": "products",
-      "url": "/products",
-      "children": [
-        {
-          "id": 19,
-          "label": "protective_shrutters",
-          "url": "/products"
+          "id": 21,
+          "title": "Захисні ролети",
+          "href": "/catalog/zahysni-rolety"
         },
         {
-          "id": 20,
-          "label": "protective_blinds",
-          "url": "/protective-blinds"
-        }
-      ]
-    },
-    {
-      "id": 21,
-      "label": "parts",
-      "url": "/product-parts"
-    },
-    {
-      "id": 22,
-      "label": "services",
-      "url": "/services"
-    },
-    {
-      "id": 23,
-      "label": "about",
-      "url": "/about"
-    },
-    {
-      "id": 24,
-      "label": "faq",
-      "url": "/articles",
-      "children": [
+          "id": 22,
+          "title": "Прозорі ролети з полікарбонату",
+          "href": "/catalog/prozori-rolety-polikarbonat"
+        },
+        {
+          "id": 23,
+          "title": "Рулонні решітки",
+          "href": "/catalog/rulonni-reshitky"
+        },
+        {
+          "id": 24,
+          "title": "Ролети за індивідуальним замовленням",
+          "href": "/catalog/rolety-individualne-zamovlennya"
+        },
         {
           "id": 25,
-          "label": "warranty",
-          "url": "/warranty"
+          "title": "Комбіновані ролетні решітки",
+          "href": "/catalog/kombinovani-roletni-reshitky"
         },
         {
           "id": 26,
-          "label": "delivery",
-          "url": "/dostavka-ta-oplata"
+          "title": "Рулонні ворота",
+          "href": "/catalog/rulonni-vorota"
         },
         {
           "id": 27,
-          "label": "articles",
-          "url": "/articles"
+          "title": "Ролетні ворота",
+          "href": "/catalog/roletni-vorota"
+        },
+        {
+          "id": 28,
+          "title": "Відкатні ворота",
+          "href": "/catalog/vidkatni-vorota",
+          "status": "in-development"
+        },
+        {
+          "id": 29,
+          "title": "Паркан жалюзі",
+          "href": "/catalog/parkan-jaluzi"
+        },
+        {
+          "id": 210,
+          "title": "Жалюзі",
+          "href": "/catalog/jaluzi",
+          "status": "in-development"
+        },
+        {
+          "id": 211,
+          "title": "Комплектуючі для жалюзі",
+          "href": "/catalog/komplektuuchi-jaluzi"
+        },
+        {
+          "id": 212,
+          "title": "Комплектуючі та фурнітура для захисних ролет",
+          "href": "/catalog/komplektuuchi-furnitura-zahysni-rolety"
+        },
+        {
+          "id": 213,
+          "title": "Віконні відливи",
+          "href": "/catalog/vikonni-vidlyvy"
         }
       ]
     },
     {
-      "id": 28,
-      "label": "dealers",
-      "url": "/dealers"
+      "id": 3,
+      "title": "Готові вироби",
+      "href": "/gotovi-vyroby",
+      "children": [
+        {
+          "id": 31,
+          "title": "Захисні ролети",
+          "href": "/gotovi-vyroby/zahysni-rolety"
+        },
+        {
+          "id": 32,
+          "title": "Ролетні ворота",
+          "href": "/gotovi-vyroby/roletni-vorota"
+        },
+        {
+          "id": 33,
+          "title": "Рулонні решітки",
+          "href": "/gotovi-vyroby/rulonni-reshitky"
+        }
+      ]
     },
     {
-      "id": 29,
-      "label": "contact",
-      "url": "/contacts"
+      "id": 4,
+      "title": "Комплектуючі",
+      "href": "/komplektuuchi"
+    },
+    {
+      "id": 5,
+      "title": "Послуги",
+      "href": "/poslugy",
+      "children": [
+        {
+          "id": 51,
+          "title": "Лазерне різання металу в Кам'янському",
+          "href": "/poslugy/lazerne-rizannya-metalu-kamyanske"
+        },
+        {
+          "id": 52,
+          "title": "Панелі для паркану та воріт в Кам'янському, Дніпрі",
+          "href": "/poslugy/paneli-parkan-vorota-kamyanske-dnipro"
+        },
+        {
+          "id": 53,
+          "title": "Послуги листозгину",
+          "href": "/poslugy/lystozgyn"
+        },
+        {
+          "id": 54,
+          "title": "Дріт пружинний оцинкований сталевий",
+          "href": "/poslugy/drit-pruzhinnyy-otsinkovaniy"
+        },
+        {
+          "id": 55,
+          "title": "Штрипс алюмінієвий за вашими розмірами",
+          "href": "/poslugy/shtrips-alyuminieviy-rozmiry"
+        },
+        {
+          "id": 56,
+          "title": "Алюмінієвий лист 1500*3000 мм",
+          "href": "/poslugy/alyuminieviy-lyst-1500-3000"
+        },
+        {
+          "id": 57,
+          "title": "Алюмінієвий кутник 20x20 мм",
+          "href": "/poslugy/alyuminieviy-kutnyk-20x20"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Про компанію",
+      "href": "/pro-kompaniyu",
+      "children": [
+        {
+          "id": 61,
+          "title": "Портфоліо",
+          "href": "/pro-kompaniyu/portfolio"
+        },
+        {
+          "id": 62,
+          "title": "Новини",
+          "href": "/pro-kompaniyu/novyny"
+        },
+        {
+          "id": 63,
+          "title": "Відгуки",
+          "href": "/pro-kompaniyu/vidguky"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Питання та відповіді",
+      "href": "/pytannya-vidpovidi",
+      "children": [
+        {
+          "id": 71,
+          "title": "Гарантія та повернення",
+          "href": "/pytannya-vidpovidi/garantiya-povernennya"
+        },
+        {
+          "id": 72,
+          "title": "Доставка і оплата",
+          "href": "/pytannya-vidpovidi/dostavka-oplata"
+        },
+        {
+          "id": 73,
+          "title": "Встановлення та настройка",
+          "href": "/pytannya-vidpovidi/vstanovlennya-nastroyka"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "title": "Дилерам",
+      "href": "/dileram"
+    },
+    {
+      "id": 9,
+      "title": "Контакти",
+      "href": "/kontakty"
     }
   ]
 }
