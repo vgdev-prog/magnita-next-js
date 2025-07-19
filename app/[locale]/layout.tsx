@@ -1,10 +1,10 @@
-import {NextIntlClientProvider} from 'next-intl';
 import React, {ReactNode} from "react";
 import {notFound} from "next/navigation";
-import {routing} from "@/src/app/i18n/routing";
+import {routing, type Locale} from "@/src/app/i18n/routing";
 import {Header} from "@/src/widgets";
 import '@/src/app/styles/index.scss'
 import {Provider} from "@/src/app/providers";
+import {fetchClientNavigation} from "@/src/widgets/header";
 
 interface RootLayoutProps {
     children: ReactNode;
@@ -15,7 +15,9 @@ export default async function RootLayout({
                                              params
                                          }: RootLayoutProps) {
     const {locale} = await params;
-    if (!routing.locales.includes(locale as any)) {
+    const initialNavigation = await fetchClientNavigation();
+
+    if (!routing.locales.includes(locale as Locale)) {
         notFound()
     }
 
@@ -25,7 +27,7 @@ export default async function RootLayout({
         <body>
         <Provider>
             <div id="app">
-                <Header/>
+                <Header initialNavigationItems={initialNavigation}/>
                 {children}
             </div>
         </Provider>

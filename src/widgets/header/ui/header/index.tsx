@@ -1,18 +1,24 @@
 "use client"
 import css from './header.module.scss'
+import clsx from "clsx";
+import {useNavigation} from "@/src/widgets/header/model/use-navigation";
 import {HeaderLogo} from "@/src/widgets/header/ui/header-logo";
 import {HeaderFactory} from "@/src/widgets/header/ui/header-factory";
-import HeaderCalculator from "@/src/widgets/header/ui/header-calculator";
-import HeaderMessengers from "@/src/widgets/header/ui/header-messengers";
+import { HeaderCalculator } from '../header-calculator';
+import { HeaderMessengers } from '../header-messengers';
 import {HeaderContacts} from "@/src/widgets/header/ui/header-contacts";
-import clsx from "clsx";
-import {ClientNavigationMenu} from "@/src/features/navigation";
+import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu";
+import {HeaderSubmenuItem} from "@/src/widgets/header/ui/header-submenu-item";
+import {NavItem} from "@/src/widgets/header/types";
 
 export interface HeaderProps {
-
+initialNavigationItems: NavItem[];
 }
 
-export const Header = ({}: HeaderProps) => {
+export const Header = ({initialNavigationItems}: HeaderProps) => {
+
+    const {navigationItems} = useNavigation(initialNavigationItems);
+
     return (
         <header className={css.header}>
                 <div className={clsx(css.top_header)}>
@@ -22,14 +28,14 @@ export const Header = ({}: HeaderProps) => {
                         <HeaderCalculator />
                         <HeaderMessengers />
                         <HeaderContacts onCallClick={() => {
-                            // TODO: Add opening modal later
+                            // TODO: Add send user to another page
                             console.log('open modal')
                         }} />
                     </div>
                 </div>
                 <div className={css.bottom_header}>
                    <nav className="header__container">
-                       <ClientNavigationMenu />
+                       <HeaderSubmenu links={navigationItems} Element={HeaderSubmenuItem}/>
                    </nav>
                 </div>
         </header>

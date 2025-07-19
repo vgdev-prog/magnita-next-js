@@ -1,4 +1,5 @@
 import {useTranslations} from "next-intl";
+import Image from "next/image";
 
 const NotFound = () => {
     const t = useTranslations();
@@ -6,7 +7,13 @@ const NotFound = () => {
         <>
             <section className="thx-page">
                 <div className="left">
-                    <img src="/img/callback-manager-rev.png" alt=""/>
+                    <Image 
+                        src="/img/callback-manager-rev.png" 
+                        alt="404 page illustration"
+                        width={400}
+                        height={300}
+                        priority
+                    />
                 </div>
                 <div className="right">
                     <p className="thx-for-order" style={{fontSize: '10vw', marginBottom: "3vw"}}>404</p>
