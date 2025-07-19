@@ -2,13 +2,16 @@
 import css from './cart-modal.module.scss'
 import clsx from "clsx";
 import {useCartModalStore} from "@/src/features/cart/model";
-import {useTranslations} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import {useState} from "react";
+import {Link} from "@/src/app/i18n/routing";
+import Image from "next/image";
 interface CartModalProps {
 
 }
 
 export const CartModal = ({}: CartModalProps) => {
+    const locale = useLocale();
     const { isOpen , closeModal} = useCartModalStore();
     const [count, setCount] = useState<number>(1)
     const t = useTranslations();
@@ -36,14 +39,14 @@ export const CartModal = ({}: CartModalProps) => {
                     <div className={css.productsBlock}>
                         <div className={css.item}>
                             <div className={css.itemHeader}>
-                                <a className={css.img}>
-                                    <img
+                                <Link href="/product/123" className={css.img} locale={locale}>
+                                    <Image
                                         alt=""
                                         src="https://www.magnita.ua/images/rozetka/bel9016.png"
                                     />
-                                </a>
+                                </Link>
                                 <div className={css.productInfo}>
-                                    <a className={css.productName}>Захисні ролети на вікна 1200х1200 мм РА45</a>
+                                    <Link href="/product/123" className={css.productName}>Захисні ролети на вікна 1200х1200 мм РА45</Link>
                                     <p className={css.available}>{t('cart.product.available')}</p>
                                     <p className={css.price}>{t('cart.product.price')}: 4764 грн/од.</p>
                                 </div>
@@ -102,17 +105,19 @@ export const CartModal = ({}: CartModalProps) => {
                         <p className={css.toPayment}>{t('cart.footer.toPayment')}</p>
                         <p className={css.basketTotal}>{t('cart.footer.total', {total: 4764})}</p>
                         <div className={css.basketBtn}>
-                            <a
+                            <Link
                                 className={clsx(css.green, css.btnO)}
+                                locale={locale}
                                 href="#"
-                            >{t('cart.footer.continueShoppingButton')}</a>
-                            <a
-                                href="/ua/basket"
+                            >{t('cart.footer.continueShoppingButton')}</Link>
+                            <Link
                                 className={css.btnO}
+                                locale={locale}
+                                href="/basket"
                             >
                                 <span className={css.btnBlick}></span>
                                 {t('cart.footer.checkoutButton')}
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
