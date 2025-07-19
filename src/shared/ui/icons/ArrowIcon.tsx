@@ -1,5 +1,3 @@
-import css from "@/src/widgets/header/ui/header-submenu-item/header-submenu-item.module.scss";
-
 interface ArrowIconProps {
 size?: number;
 fill?: string;
