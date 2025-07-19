@@ -9,7 +9,7 @@ interface CartModalProps {
 
 export const CartModal = ({}: CartModalProps) => {
     const { isOpen , closeModal} = useCartModalStore();
-    const t = useTranslations('cart');
+    const t = useTranslations();
     return (
         <>
             <div
@@ -27,8 +27,8 @@ export const CartModal = ({}: CartModalProps) => {
                     </button>
 
                     <div className={css.topLine}>
-                        <h2 className={css.titleBasket}>{t('title')}</h2>
-                        <div className={css.cartSummary}>{t('summary', {count: 1, total: 4764})}</div>
+                        <h2 className={css.titleBasket}>{t('cart.title')}</h2>
+                        <div className={css.cartSummary}>{t('cart.summary', {count: 1, total: 4764})}</div>
                     </div>
 
                     <div className={css.productsBlock}>
@@ -42,14 +42,14 @@ export const CartModal = ({}: CartModalProps) => {
                                 </a>
                                 <div className={css.productInfo}>
                                     <a className={css.productName}>Захисні ролети на вікна 1200х1200 мм РА45</a>
-                                    <p className={css.available}>{t('product.available')}</p>
-                                    <p className={css.price}>Ціна: 4764 грн/од.</p>
+                                    <p className={css.available}>{t('cart.product.available')}</p>
+                                    <p className={css.price}>{t('cart.product.price')}: 4764 грн/од.</p>
                                 </div>
                             </div>
 
                             <div className={css.itemControls}>
                                 <div className={css.qty}>
-                                    <p className={css.title}>{t('product.quantity')}</p>
+                                    <p className={css.title}>{t('cart.product.quantity')}</p>
                                     <div className={css.counter}>
                                         <svg
                                             viewBox="0 0 20 20"
@@ -74,7 +74,7 @@ export const CartModal = ({}: CartModalProps) => {
                                 </div>
 
                                 <div className={css.productTotal}>
-                                    <p className={css.title}>{t('product.total')}</p>
+                                    <p className={css.title}>{t('cart.product.total')}</p>
                                     <span className={css.value}>4764 грн</span>
                                 </div>
 
@@ -96,19 +96,19 @@ export const CartModal = ({}: CartModalProps) => {
                     </div>
 
                     <div className={css.cartFooter}>
-                        <p className={css.toPayment}>{t('footer.toPayment')}</p>
-                        <p className={css.basketTotal}>{t('footer.total', {total: 4764})}</p>
+                        <p className={css.toPayment}>{t('cart.footer.toPayment')}</p>
+                        <p className={css.basketTotal}>{t('cart.footer.total', {total: 4764})}</p>
                         <div className={css.basketBtn}>
                             <a
                                 className={clsx(css.green, css.btnO)}
                                 href="#"
-                            >{t('footer.continueShoppingButton')}</a>
+                            >{t('cart.footer.continueShoppingButton')}</a>
                             <a
                                 href="/ua/basket"
                                 className={css.btnO}
                             >
                                 <span className={css.btnBlick}></span>
-                                {t('footer.checkoutButton')}
+                                {t('cart.footer.checkoutButton')}
                             </a>
                         </div>
                     </div>
