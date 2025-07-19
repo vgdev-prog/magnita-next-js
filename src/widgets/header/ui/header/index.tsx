@@ -15,12 +15,11 @@ import {ReactNode} from "react";
 
 export interface HeaderProps {
 initialNavigationItems: NavItem[];
-searchButton?: ReactNode;
 languageSelect?: ReactNode;
 cartButton?: ReactNode;
 }
 
-export const Header = ({initialNavigationItems,searchButton,cartButton,languageSelect}: HeaderProps) => {
+export const Header = ({initialNavigationItems,cartButton,languageSelect}: HeaderProps) => {
 
     const {navigationItems} = useNavigation(initialNavigationItems);
 
@@ -41,7 +40,7 @@ export const Header = ({initialNavigationItems,searchButton,cartButton,languageS
                 <div className={css.bottom_header}>
                    <div className="header__container">
                        <HeaderSubmenu links={navigationItems} Element={HeaderSubmenuItem}/>
-                        <HeaderActions search={searchButton} language={languageSelect} cart={cartButton} />
+                        <HeaderActions language={languageSelect} cart={cartButton} />
                    </div>
 
                 </div>

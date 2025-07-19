@@ -5,9 +5,7 @@ import {Header} from "@/src/widgets";
 import '@/src/app/styles/index.scss'
 import {Provider} from "@/src/app/providers";
 import {fetchClientNavigation} from "@/src/widgets/header";
-import {SearchButton} from "@/src/features/search";
 import {CartButton} from "@/src/features/cart";
-import {SearchModal} from "@/src/features/search/ui/search-modal";
 import {CartModal} from "@/src/features/cart/ui/cart-modal";
 
 interface RootLayoutProps {
@@ -31,10 +29,9 @@ export default async function RootLayout({
         <body>
         <Provider>
             <div id="app">
-                <Header initialNavigationItems={initialNavigation} searchButton={<SearchButton />} cartButton={<CartButton />}/>
+                <Header initialNavigationItems={initialNavigation} cartButton={<CartButton />}/>
                 {children}
-                <SearchModal />
-                    <CartModal />
+                <CartModal />
             </div>
         </Provider>
         </body>
