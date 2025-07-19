@@ -1,11 +1,12 @@
 "use client"
 import css from './header.module.scss'
+import clsx from "clsx";
+import {useNavigation} from "@/src/widgets/header/model/use-navigation";
 import {HeaderLogo} from "@/src/widgets/header/ui/header-logo";
 import {HeaderFactory} from "@/src/widgets/header/ui/header-factory";
-import HeaderCalculator from "@/src/widgets/header/ui/header-calculator";
-import HeaderMessengers from "@/src/widgets/header/ui/header-messengers";
+import { HeaderCalculator } from '../header-calculator';
+import { HeaderMessengers } from '../header-messengers';
 import {HeaderContacts} from "@/src/widgets/header/ui/header-contacts";
-import clsx from "clsx";
 import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu";
 
 export interface HeaderProps {
@@ -13,6 +14,9 @@ export interface HeaderProps {
 }
 
 export const Header = ({}: HeaderProps) => {
+
+    const {navigationItems} = useNavigation();
+
     return (
         <header className={css.header}>
                 <div className={clsx(css.top_header)}>
@@ -29,7 +33,7 @@ export const Header = ({}: HeaderProps) => {
                 </div>
                 <div className={css.bottom_header}>
                    <nav className="header__container">
-                       <HeaderSubmenu />
+                       <HeaderSubmenu links={navigationItems} />
                    </nav>
                 </div>
         </header>
