@@ -8,6 +8,7 @@ import { HeaderCalculator } from '../header-calculator';
 import { HeaderMessengers } from '../header-messengers';
 import {HeaderContacts} from "@/src/widgets/header/ui/header-contacts";
 import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu";
+import {HeaderSubmenuItem} from "@/src/widgets/header/ui/header-submenu-item";
 
 export interface HeaderProps {
 
@@ -26,14 +27,14 @@ export const Header = ({}: HeaderProps) => {
                         <HeaderCalculator />
                         <HeaderMessengers />
                         <HeaderContacts onCallClick={() => {
-                            // TODO: Add opening modal later
+                            // TODO: Add send user to another page
                             console.log('open modal')
                         }} />
                     </div>
                 </div>
                 <div className={css.bottom_header}>
                    <nav className="header__container">
-                       <HeaderSubmenu links={navigationItems} />
+                       <HeaderSubmenu links={navigationItems} Element={HeaderSubmenuItem}/>
                    </nav>
                 </div>
         </header>

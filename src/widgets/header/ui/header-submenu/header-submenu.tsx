@@ -1,17 +1,21 @@
-import {useQuery} from "@tanstack/react-query";
 import css from './header-submenu.module.scss'
-import {HeaderSubmenuItem} from "@/src/widgets/header/ui/header-submenu-item";
 import {NavItem} from "@/src/widgets/header/types";
+import {ComponentType} from "react";
+
+type ItemComponent = ComponentType<{ item: NavItem }>;
+
 interface NavigationProps {
-links: NavItem[]
+    links: NavItem[],
+    Element: ItemComponent;
 }
 
-export const HeaderSubmenu = ({links}: NavigationProps) => {
+export const HeaderSubmenu = ({links,Element}: NavigationProps) => {
     return (
         <ul className={css.menu}>
             {links.map(link => (
-                <HeaderSubmenuItem link={link} key={link.id}/>
-            ))}
+                <Element key={link.id} item={link}/>
+                )
+            )}
         </ul>
     );
 };
