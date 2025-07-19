@@ -5,32 +5,13 @@ import {useCartModalStore} from "@/src/features/cart/model";
 import {useLocale, useTranslations} from "next-intl";
 import {Link} from "@/src/app/i18n/routing";
 import Image from "next/image";
+import {cartItems} from "@/src/features/cart/__mocks__/mockCartItems";
 
-interface CartProduct {
-    id: string;
-    name: string;
-    price: number;
-    image: string;
-    quantity: number;
-}
 
-type CartModalProps = Record<string, never>
-
-export const CartModal = ({}: CartModalProps) => {
+export const CartModal = () => {
     const locale = useLocale();
     const { isOpen , closeModal} = useCartModalStore();
     const t = useTranslations();
-
-    // Mock data - в реальном приложении это будет из store или props
-    const cartItems: CartProduct[] = [
-        {
-            id: "bel9016",
-            name: "Захисні ролети на вікна 1200х1200 мм РА45",
-            price: 4764,
-            image: "/images/rozetka/bel9016.png",
-            quantity: 1
-        }
-    ];
 
     const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     return (
