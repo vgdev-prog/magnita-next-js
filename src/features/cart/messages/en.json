@@ -4,7 +4,8 @@
   "product": {
     "available": "In stock",
     "quantity": "Quantity",
-    "total": "Total"
+    "total": "Total",
+    "price": "Price"
   },
   "footer": {
     "toPayment": "To pay without delivery:",

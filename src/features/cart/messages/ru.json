@@ -4,7 +4,8 @@
   "product": {
     "available": "В наличии",
     "quantity": "Количество",
-    "total": "Всего"
+    "total": "Всего",
+    "price": "Цена"
   },
   "footer": {
     "toPayment": "К оплате без доставки:",
