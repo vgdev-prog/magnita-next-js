@@ -3,16 +3,36 @@ import css from './cart-modal.module.scss'
 import clsx from "clsx";
 import {useCartModalStore} from "@/src/features/cart/model";
 import {useLocale, useTranslations} from "next-intl";
-import {useState} from "react";
 import {Link} from "@/src/app/i18n/routing";
 import Image from "next/image";
+
+interface CartProduct {
+    id: string;
+    name: string;
+    price: number;
+    image: string;
+    quantity: number;
+}
+
 interface CartModalProps extends Record<string, never> {}
 
 export const CartModal = ({}: CartModalProps) => {
     const locale = useLocale();
     const { isOpen , closeModal} = useCartModalStore();
-    const [count, setCount] = useState<number>(1)
     const t = useTranslations();
+
+    // Mock data - в реальном приложении это будет из store или props
+    const cartItems: CartProduct[] = [
+        {
+            id: "bel9016",
+            name: "Захисні ролети на вікна 1200х1200 мм РА45",
+            price: 4764,
+            image: "https://www.magnita.ua/images/rozetka/bel9016.png",
+            quantity: 1
+        }
+    ];
+
+    const totalPrice = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     return (
         <>
             <div
@@ -31,24 +51,27 @@ export const CartModal = ({}: CartModalProps) => {
 
                     <div className={css.topLine}>
                         <h2 className={css.titleBasket}>{t('cart.title')}</h2>
-                        <div className={css.cartSummary}>{t('cart.summary', {count: 1, total: 4764})}</div>
+                        <div className={css.cartSummary}>{t('cart.summary', {count: cartItems.length, total: totalPrice})}</div>
                     </div>
 
                     <div className={css.productsBlock}>
-                        <div className={css.item}>
-                            <div className={css.itemHeader}>
-                                <Link href="/product/123" className={css.img} locale={locale}>
-                                    <Image
-                                        alt=""
-                                        src="https://www.magnita.ua/images/rozetka/bel9016.png"
-                                    />
-                                </Link>
-                                <div className={css.productInfo}>
-                                    <Link href="/product/123" className={css.productName}>Захисні ролети на вікна 1200х1200 мм РА45</Link>
-                                    <p className={css.available}>{t('cart.product.available')}</p>
-                                    <p className={css.price}>{t('cart.product.price')}: 4764 грн/од.</p>
+                        {cartItems.map((item) => (
+                            <div key={item.id} className={css.item}>
+                                <div className={css.itemHeader}>
+                                    <Link href={`/product/${item.id}`} className={css.img} locale={locale}>
+                                        <Image
+                                            width={80}
+                                            height={80}
+                                            alt={item.name}
+                                            src={item.image}
+                                        />
+                                    </Link>
+                                    <div className={css.productInfo}>
+                                        <Link href={`/product/${item.id}`} className={css.productName}>{item.name}</Link>
+                                        <p className={css.available}>{t('cart.product.available')}</p>
+                                        <p className={css.price}>{t('cart.product.price')}: {item.price} грн/од.</p>
+                                    </div>
                                 </div>
-                            </div>
 
                             <div className={css.itemControls}>
                                 <div className={css.qty}>
@@ -63,8 +86,11 @@ export const CartModal = ({}: CartModalProps) => {
                                         </svg>
                                         <input
                                             type="number"
-                                            value={count}
-                                            onChange={(e) => setCount(Number(e.target.value))}
+                                            value={item.quantity}
+                                            onChange={(e) => {
+                                                // TODO: implement quantity update logic
+                                                console.log('Update quantity:', e.target.value);
+                                            }}
                                             min="1"
                                         />
                                         <svg
@@ -79,7 +105,7 @@ export const CartModal = ({}: CartModalProps) => {
 
                                 <div className={css.productTotal}>
                                     <p className={css.title}>{t('cart.product.total')}</p>
-                                    <span className={css.value}>4764 {t('uah')}</span>
+                                    <span className={css.value}>{item.price * item.quantity} грн</span>
                                 </div>
 
                                 <div
@@ -95,19 +121,20 @@ export const CartModal = ({}: CartModalProps) => {
                                 </div>
                             </div>
 
-                            <p className={css.size}>💡 Потрібний вам розмір вказується: 0,4/0,9/1/1,2/1,8 і т.д.</p>
-                        </div>
+                                <p className={css.size}>💡 Потрібний вам розмір вказується: 0,4/0,9/1/1,2/1,8 і т.д.</p>
+                            </div>
+                        ))}
                     </div>
 
                     <div className={css.cartFooter}>
                         <p className={css.toPayment}>{t('cart.footer.toPayment')}</p>
-                        <p className={css.basketTotal}>{t('cart.footer.total', {total: 4764})}</p>
+                        <p className={css.basketTotal}>{t('cart.footer.total', {total: totalPrice})}</p>
                         <div className={css.basketBtn}>
-                            <Link
+                            <button
                                 className={clsx(css.green, css.btnO)}
-                                locale={locale}
-                                href="#"
-                            >{t('cart.footer.continueShoppingButton')}</Link>
+                                type="button"
+                                aria-label="Продолжить покупки"
+                            >{t('cart.footer.continueShoppingButton')}</button>
                             <Link
                                 className={css.btnO}
                                 locale={locale}
