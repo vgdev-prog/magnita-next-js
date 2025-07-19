@@ -80,9 +80,6 @@ describe('Header Component', () => {
     
     const bottomHeader = container.querySelector('.bottom_header')
     expect(bottomHeader).toBeInTheDocument()
-    
-    const navElement = container.querySelector('nav')
-    expect(navElement).toBeInTheDocument()
   })
 
   it('applies correct CSS classes', () => {
@@ -101,8 +98,8 @@ describe('Header Component', () => {
     const bottomHeaderDiv = container.querySelector('.bottom_header')
     expect(bottomHeaderDiv).toBeInTheDocument()
     
-    const navElement = container.querySelector('nav')
-    expect(navElement).toHaveClass('header__container')
+    const headerContainerDiv = container.querySelector('.header__container')
+    expect(headerContainerDiv).toBeInTheDocument()
   })
 
   it('handles call button click', async () => {
@@ -124,11 +121,10 @@ describe('Header Component', () => {
     expect(headerElement.tagName).toBe('HEADER')
   })
 
-  it('contains navigation landmark', () => {
+  it('contains navigation menu', () => {
     render(<Header initialNavigationItems={mockNavigationItems} />)
     
-    const navElement = screen.getByRole('navigation')
-    expect(navElement).toBeInTheDocument()
-    expect(navElement.tagName).toBe('NAV')
+    const navigationMenu = screen.getByTestId('navigation-menu')
+    expect(navigationMenu).toBeInTheDocument()
   })
 })

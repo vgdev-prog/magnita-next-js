@@ -19,7 +19,7 @@ const initialState: CartModalState = {
   searchQuery: '',
 }
 
-export const useCartModalStore = create<CartModalStore>((set, get) => ({
+export const useCartModalStore = create<CartModalStore>((set) => ({
   ...initialState,
 
   openModal: () => {
