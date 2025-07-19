@@ -1,0 +1,15 @@
+{
+  "title": "Что вы ищете?",
+  "subtitle": "Найдите защитные ролеты, ворота и аксессуары",
+  "placeholder": "Я ищу защитные ролеты...",
+  "popular_queries": "Популярные запросы:",
+  "suggestions": {
+    "shutters": "Защитные ролеты",
+    "gates": "Роллетные ворота",
+    "grilles": "Рулонные решетки", 
+    "blinds": "Жалюзи",
+    "accessories": "Комплектующие",
+    "installation": "Установка"
+  },
+  "tip_text": "Нажмите <close>Esc</close> чтобы закрыть или <search>Enter</search> для поиска"
+}

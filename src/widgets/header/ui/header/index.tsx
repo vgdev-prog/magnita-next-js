@@ -10,12 +10,17 @@ import {HeaderContacts} from "@/src/widgets/header/ui/header-contacts";
 import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu";
 import {HeaderSubmenuItem} from "@/src/widgets/header/ui/header-submenu-item";
 import {NavItem} from "@/src/widgets/header/types";
+import {HeaderActions} from "@/src/widgets/header/ui/header-actions";
+import {ReactNode} from "react";
 
 export interface HeaderProps {
 initialNavigationItems: NavItem[];
+searchButton?: ReactNode;
+languageSelect?: ReactNode;
+cartButton?: ReactNode;
 }
 
-export const Header = ({initialNavigationItems}: HeaderProps) => {
+export const Header = ({initialNavigationItems,searchButton,cartButton,languageSelect}: HeaderProps) => {
 
     const {navigationItems} = useNavigation(initialNavigationItems);
 
@@ -34,9 +39,11 @@ export const Header = ({initialNavigationItems}: HeaderProps) => {
                     </div>
                 </div>
                 <div className={css.bottom_header}>
-                   <nav className="header__container">
+                   <div className="header__container">
                        <HeaderSubmenu links={navigationItems} Element={HeaderSubmenuItem}/>
-                   </nav>
+                        <HeaderActions search={searchButton} language={languageSelect} cart={cartButton} />
+                   </div>
+
                 </div>
         </header>
     );
