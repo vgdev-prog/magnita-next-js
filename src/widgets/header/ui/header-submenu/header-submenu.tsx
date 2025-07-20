@@ -10,10 +10,11 @@ interface HeaderSubmenuProps {
 links: NavItem[];
 onMouseEnter?: () => void;
 onMouseLeave?: () => void;
+onClose?: () => void;
 triggerRef?: React.RefObject<HTMLElement>;
 }
 
-export const HeaderSubmenu = ({links, triggerRef}: HeaderSubmenuProps) => {
+export const HeaderSubmenu = ({links, triggerRef, onClose}: HeaderSubmenuProps) => {
     const locale = useLocale();
     const [position, setPosition] = useState({ top: 0, left: 0 });
 
@@ -27,24 +28,33 @@ export const HeaderSubmenu = ({links, triggerRef}: HeaderSubmenuProps) => {
         }
     }, [triggerRef]);
 
-    return createPortal( <div
-        className={css.dropdown}
-        style={{
-            '--dropdown-top': `${position.top}px`,
-            '--dropdown-left': `${position.left}px`
-        } as React.CSSProperties}
-    >
-        <div className={css.dropdownContent}>
-            {links.map((child: NavItem) => (
-                <Link
-                    key={child.id}
-                    href={child.href}
-                    locale={locale}
-                    className={css.dropdownItem}
-                >
-                    {child.title}
-                </Link>
-            ))}
+    return createPortal(<>
+        {onClose && (
+            <div 
+                className={css.overlay} 
+                onClick={onClose}
+            />
+        )}
+        <div
+            className={css.dropdown}
+            style={{
+                '--dropdown-top': `${position.top}px`,
+                '--dropdown-left': `${position.left}px`
+            } as React.CSSProperties}
+        >
+            <div className={css.dropdownContent}>
+                {links.map((child: NavItem) => (
+                    <Link
+                        key={child.id}
+                        href={child.href}
+                        locale={locale}
+                        className={css.dropdownItem}
+                        onClick={onClose}
+                    >
+                        {child.title}
+                    </Link>
+                ))}
+            </div>
         </div>
-    </div>, document.body)
+    </>, document.body)
 };
