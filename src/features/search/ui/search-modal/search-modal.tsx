@@ -4,11 +4,7 @@ import clsx from "clsx";
 import {SearchIcon} from "@/src/shared";
 import {useTranslations} from "next-intl";
 import {useSearchModalStore} from "@/src/features/search";
-interface SearchModalProps {
-
-}
-
-export const SearchModal = ({}: SearchModalProps) => {
+export const SearchModal = () => {
     const t = useTranslations('search');
     const {isOpen,closeModal} = useSearchModalStore()
     console.log(isOpen)

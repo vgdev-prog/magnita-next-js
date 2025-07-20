@@ -3,9 +3,7 @@ import {SearchIcon} from "@/src/shared";
 import {useSearchModalStore} from "@/src/features/search";
 import css from './search-button.module.scss';
 
-interface SearchButtonProps {}
-
-export const SearchButton = ({}: SearchButtonProps) => {
+export const SearchButton = () => {
     const {openModal} = useSearchModalStore();
     return (
         <button
