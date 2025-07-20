@@ -47,11 +47,20 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
         }
     };
 
-    const handleMouseLeave = () => {
+    const handleMouseLeave = (e: React.MouseEvent) => {
         if (!isTouchDevice) {
+            // Проверяем, что курсор действительно покинул элемент
+            const relatedTarget = e.relatedTarget as Element;
+            const currentTarget = e.currentTarget as Element;
+            
+            // Если курсор переместился на дочерний элемент, не закрываем
+            if (relatedTarget && currentTarget.contains(relatedTarget)) {
+                return;
+            }
+            
             timeoutRef.current = setTimeout(() => {
                 setIsDropdownOpen(false);
-            }, 150);
+            }, 300);
         }
     };
 
@@ -69,7 +78,7 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
         if (!isTouchDevice) {
             timeoutRef.current = setTimeout(() => {
                 setIsDropdownOpen(false);
-            }, 150);
+            }, 300);
         }
     };
 
@@ -101,10 +110,14 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
         <li 
             ref={itemRef}
             className={css.item}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
         >
-            <Link href={item.href} locale={locale} onClick={handleLinkClick}>
+            <Link 
+                href={item.href} 
+                locale={locale} 
+                onClick={handleLinkClick}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
                 {item.title}
                 {itemHasChildren && (
                     <button ref={iconRef} className={`${css.icon} ${isDropdownOpen ? css.iconOpen : ''}`}>
