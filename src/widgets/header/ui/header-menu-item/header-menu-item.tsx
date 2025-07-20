@@ -4,7 +4,7 @@ import {useLocale} from "next-intl";
 import css from './header-item.module.scss'
 import {NavItem} from "@/src/widgets/header/types";
 import {ArrowIcon} from "@/src/shared";
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu/header-submenu";
 
 interface ClientNavigationLinkProps {
@@ -14,24 +14,69 @@ item: NavItem
 export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
     const locale = useLocale();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
     const itemRef = useRef<HTMLLIElement>(null);
+    const iconRef = useRef<HTMLButtonElement>(null);
 
     const itemHasChildren = item.children && item.children.length > 0;
 
+    useEffect(() => {
+        // Проверяем, является ли устройство тачскрином
+        const checkTouchDevice = () => {
+            setIsTouchDevice(('ontouchstart' in window) || (navigator.maxTouchPoints > 0));
+        };
+        
+        checkTouchDevice();
+        window.addEventListener('resize', checkTouchDevice);
+        return () => window.removeEventListener('resize', checkTouchDevice);
+    }, []);
+
     const handleMouseEnter = () => {
-        setIsDropdownOpen(true);
+        if (!isTouchDevice) {
+            setIsDropdownOpen(true);
+        }
     };
 
     const handleMouseLeave = () => {
-        setIsDropdownOpen(false);
+        if (!isTouchDevice) {
+            setIsDropdownOpen(false);
+        }
     };
 
     const handleMenuMouseEnter = () => {
-        setIsDropdownOpen(true);
+        if (!isTouchDevice) {
+            setIsDropdownOpen(true);
+        }
     };
 
     const handleMenuMouseLeave = () => {
-        setIsDropdownOpen(false);
+        if (!isTouchDevice) {
+            setIsDropdownOpen(false);
+        }
+    };
+
+    const handleLinkClick = (e: React.MouseEvent) => {
+        if (isTouchDevice && itemHasChildren) {
+            const iconElement = iconRef.current;
+            if (iconElement) {
+                const iconRect = iconElement.getBoundingClientRect();
+                const clickX = e.clientX;
+                const clickY = e.clientY;
+                
+                // Проверяем, был ли клик в области иконки
+                const isIconClick = clickX >= iconRect.left && 
+                                  clickX <= iconRect.right && 
+                                  clickY >= iconRect.top && 
+                                  clickY <= iconRect.bottom;
+                
+                if (isIconClick) {
+                    e.preventDefault();
+                    setIsDropdownOpen(!isDropdownOpen);
+                    return;
+                }
+            }
+        }
+        // Если клик не по иконке или не тачскрин - переходим по ссылке как обычно
     };
     
     return (
@@ -41,10 +86,10 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <Link href={item.href} locale={locale}>
+            <Link href={item.href} locale={locale} onClick={handleLinkClick}>
                 {item.title}
                 {itemHasChildren && (
-                    <button className={css.icon}>
+                    <button ref={iconRef} className={css.icon}>
                         <ArrowIcon fill="#fff" size={11} />
                     </button>
                 )}
@@ -55,6 +100,7 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
                     links={item.children || []} 
                     onMouseEnter={handleMenuMouseEnter}
                     onMouseLeave={handleMenuMouseLeave}
+                    onClose={isTouchDevice ? () => setIsDropdownOpen(false) : undefined}
                     triggerRef={itemRef}
                 />
             )}
