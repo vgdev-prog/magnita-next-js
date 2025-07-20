@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { HeaderSubmenu } from '../index'
+import { HeaderMenu } from '../index'
 import { NavItem } from '../../../types'
 
 describe('HeaderSubmenu Component', () => {
@@ -16,7 +16,7 @@ describe('HeaderSubmenu Component', () => {
       { id: 3, title: 'Products', href: '/products' },
     ]
 
-    render(<HeaderSubmenu links={mockData} Element={MockElement} />)
+    render(<HeaderMenu links={mockData} Element={MockElement} />)
 
     expect(screen.getByTestId('nav-item-1')).toBeInTheDocument()
     expect(screen.getByTestId('nav-item-1')).toHaveTextContent('Home - /')
@@ -27,7 +27,7 @@ describe('HeaderSubmenu Component', () => {
   it('renders as unordered list', () => {
     const mockData: NavItem[] = []
 
-    const { container } = render(<HeaderSubmenu links={mockData} Element={MockElement} />)
+    const { container } = render(<HeaderMenu links={mockData} Element={MockElement} />)
 
     const listElement = container.querySelector('ul')
     expect(listElement).toBeInTheDocument()
@@ -35,7 +35,7 @@ describe('HeaderSubmenu Component', () => {
   })
 
   it('handles empty navigation data', () => {
-    const { container } = render(<HeaderSubmenu links={[]} Element={MockElement} />)
+    const { container } = render(<HeaderMenu links={[]} Element={MockElement} />)
 
     const listElement = container.querySelector('ul')
     expect(listElement).toBeInTheDocument()
@@ -48,7 +48,7 @@ describe('HeaderSubmenu Component', () => {
       { id: 2, title: 'Item 2', href: '/item2' },
     ]
 
-    render(<HeaderSubmenu links={mockData} Element={MockElement} />)
+    render(<HeaderMenu links={mockData} Element={MockElement} />)
 
     expect(screen.getByTestId('nav-item-1')).toBeInTheDocument()
     expect(screen.getByTestId('nav-item-2')).toBeInTheDocument()

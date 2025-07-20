@@ -1,3 +1,5 @@
+@use "@/src/app/styles/vendor/variables" as *;
+
 .header {
   color: #efebeb;
   background-color: #282828;
@@ -17,11 +19,14 @@
   border-top: 1px solid #1b1b1b;
   padding-top: 5px;
   padding-bottom: 5px;
-  
-  .header__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
+  @media (max-width: $tablet){
+    display: none;
   }
+
+}
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }

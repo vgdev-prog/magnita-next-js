@@ -18,36 +18,36 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
-  box-shadow: 
+  box-shadow:
     0 2px 8px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  
+
   &:hover {
     background: rgba(245, 146, 17, 0.15);
     border-color: rgba(245, 146, 17, 0.3);
     transform: translateY(-1px);
-    box-shadow: 
+    box-shadow:
       0 4px 12px rgba(245, 146, 17, 0.2),
       0 2px 8px rgba(0, 0, 0, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
+
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
   }
-  
+
   @media (max-width: 768px) {
     padding: 6px 10px;
     gap: 6px;
     font-size: 11px;
   }
-  
+
   @media (max-width: 576px) {
     padding: 5px 8px;
     gap: 4px;
@@ -58,11 +58,11 @@
 .flag {
   font-size: 16px;
   line-height: 1;
-  
+
   @media (max-width: 768px) {
     font-size: 14px;
   }
-  
+
   @media (max-width: 576px) {
     font-size: 12px;
   }
@@ -78,7 +78,7 @@
 .arrow {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   color: rgba(255, 255, 255, 0.7);
-  
+
   &Open {
     transform: rotate(180deg);
     color: #f59211;
@@ -90,8 +90,7 @@
   top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
-  animation: dropdownFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: dropdownFadeIn 0.01s cubic-bezier(0.4, 0, 0.2, 1);
   
   &::before {
     content: "";

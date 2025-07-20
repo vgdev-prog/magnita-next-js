@@ -1,4 +1,4 @@
-import css from './header-submenu.module.scss'
+import css from './header-menu.module.scss'
 import {NavItem} from "@/src/widgets/header/types";
 import {ComponentType} from "react";
 
@@ -9,7 +9,7 @@ interface NavigationProps {
     Element: ItemComponent;
 }
 
-export const HeaderSubmenu = ({links,Element}: NavigationProps) => {
+export const HeaderMenu = ({links,Element}: NavigationProps) => {
     return (
         <ul className={css.menu}>
             {links.map(link => (
