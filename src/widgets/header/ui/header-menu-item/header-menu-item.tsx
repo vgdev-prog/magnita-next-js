@@ -5,7 +5,7 @@ import css from './header-item.module.scss'
 import {NavItem} from "@/src/widgets/header/types";
 import {ArrowIcon} from "@/src/shared";
 import {useState, useRef, useEffect} from "react";
-import {HeaderCatalogGrid} from "@/src/widgets/header/ui/header-catalog-grid/header-catalog-grid";
+import {renderDropdown} from "@/src/widgets/header/lib/dropdown-factory";
 
 interface ClientNavigationLinkProps {
 item: NavItem
@@ -113,14 +113,15 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
                 )}
             </Link>
             
-            {itemHasChildren && isDropdownOpen && (
-                <HeaderCatalogGrid 
-                    links={item.children || []} 
-                    onMouseEnter={handleMenuMouseEnter}
-                    onMouseLeave={handleMenuMouseLeave}
-                    onClose={isTouchDevice ? () => setIsDropdownOpen(false) : undefined}
-                    triggerRef={itemRef}
-                />
+            {itemHasChildren && isDropdownOpen && renderDropdown(
+                item.menu_type || 'column',
+                {
+                    links: item.children || [],
+                    onMouseEnter: handleMenuMouseEnter,
+                    onMouseLeave: handleMenuMouseLeave,
+                    onClose: isTouchDevice ? () => setIsDropdownOpen(false) : undefined,
+                    triggerRef: itemRef
+                }
             )}
         </li>
     );
