@@ -22,7 +22,7 @@ describe('Navigation API', () => {
 
       const result = await fetchClientNavigation()
 
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('https://687cc3d4918b6422432f623e.mockapi.io/api/v1/menus')
       expect(result).toEqual(mockData)
     })
 
@@ -33,7 +33,7 @@ describe('Navigation API', () => {
       await fetchClientNavigation()
 
       expect(mockedAxios.get).toHaveBeenCalledTimes(1)
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('https://687cc3d4918b6422432f623e.mockapi.io/api/v1/menus')
     })
 
     it('returns data from axios response', async () => {
@@ -66,7 +66,7 @@ describe('Navigation API', () => {
       mockedAxios.get.mockRejectedValue(new Error(errorMessage))
 
       await expect(fetchClientNavigation()).rejects.toThrow(errorMessage)
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('https://687cc3d4918b6422432f623e.mockapi.io/api/v1/menus')
     })
 
     it('handles empty response data', async () => {
