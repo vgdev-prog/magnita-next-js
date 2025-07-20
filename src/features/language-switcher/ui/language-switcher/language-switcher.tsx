@@ -1,7 +1,8 @@
 "use client"
-import { useState, useTransition } from 'react';
+import { useState, useTransition, useRef } from 'react';
 import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
+import { LanguageDropdown } from '../language-dropdown';
 import css from './language-switcher.module.scss';
 
 const languages = [
@@ -16,12 +17,13 @@ export const LanguageSwitcher = () => {
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
+  const [triggerRect, setTriggerRect] = useState<DOMRect | null>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const currentLanguage = languages.find(lang => lang.code === locale) || languages[0];
 
   const handleLanguageChange = (newLocale: string) => {
     startTransition(() => {
-      // Remove the current locale from the pathname
       const pathWithoutLocale = pathname.replace(`/${locale}`, '');
       const newPath = `/${newLocale}${pathWithoutLocale}`;
       router.push(newPath);
@@ -32,8 +34,14 @@ export const LanguageSwitcher = () => {
   return (
     <div className={css.container}>
       <button 
+        ref={triggerRef}
         className={css.trigger}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          if (!isOpen && triggerRef.current) {
+            setTriggerRect(triggerRef.current.getBoundingClientRect());
+          }
+          setIsOpen(!isOpen);
+        }}
         disabled={isPending}
       >
         <span className={css.flag}>{currentLanguage.flag}</span>
@@ -55,33 +63,16 @@ export const LanguageSwitcher = () => {
         </svg>
       </button>
 
-      {isOpen && (
-        <div className={css.dropdown}>
-          <div className={css.dropdownContent}>
-            {languages
-              .filter(lang => lang.code !== locale)
-              .map((language) => (
-                <button
-                  key={language.code}
-                  className={css.option}
-                  onClick={() => handleLanguageChange(language.code)}
-                  disabled={isPending}
-                >
-                  <span className={css.optionFlag}>{language.flag}</span>
-                  <span className={css.optionName}>{language.name}</span>
-                  <span className={css.optionCode}>{language.code.toUpperCase()}</span>
-                </button>
-              ))}
-          </div>
-        </div>
-      )}
-
-      {isOpen && (
-        <div 
-          className={css.overlay} 
-          onClick={() => setIsOpen(false)}
-        />
-      )}
+      <LanguageDropdown
+        isOpen={isOpen}
+        currentLocale={locale}
+        onLanguageChange={handleLanguageChange}
+        onClose={() => {
+          setIsOpen(false);
+          setTriggerRect(null);
+        }}
+        triggerRect={triggerRect}
+      />
     </div>
   );
 };
