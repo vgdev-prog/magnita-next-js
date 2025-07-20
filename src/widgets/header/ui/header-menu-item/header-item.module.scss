@@ -154,9 +154,9 @@
 }
 
 .dropdown {
-  position: fixed;
-  top: var(--dropdown-top, 100%);
-  left: var(--dropdown-left, 50%);
+  position: absolute;
+  top: 100%;
+  left: 50%;
   transform: translateX(-50%);
   margin-top: 2px;
   animation: dropdownFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
