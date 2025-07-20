@@ -20,7 +20,12 @@ export const HeaderCatalogGrid = ({links, triggerRef, onClose, onMouseEnter, onM
     const getInitialPosition = () => {
         if (triggerRef?.current) {
             const rect = triggerRef.current.getBoundingClientRect();
-            const dropdownWidth = window.innerWidth <= 576 ? 280 : window.innerWidth <= 768 ? 360 : 750;
+            // Адаптивная ширина на основе контента
+            const dropdownWidth = window.innerWidth <= 576 ? 
+                Math.min(window.innerWidth * 0.98, 600) : 
+                window.innerWidth <= 768 ? 
+                Math.min(window.innerWidth * 0.95, 800) : 
+                Math.min(window.innerWidth * 0.9, 1200);
             const halfWidth = dropdownWidth / 2;
             
             let leftPosition = rect.left + rect.width / 2;
