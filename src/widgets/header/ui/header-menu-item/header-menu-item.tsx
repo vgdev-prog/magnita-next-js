@@ -89,7 +89,7 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
             <Link href={item.href} locale={locale} onClick={handleLinkClick}>
                 {item.title}
                 {itemHasChildren && (
-                    <button ref={iconRef} className={css.icon}>
+                    <button ref={iconRef} className={`${css.icon} ${isDropdownOpen ? css.iconOpen : ''}`}>
                         <ArrowIcon fill="#fff" size={11} />
                     </button>
                 )}
