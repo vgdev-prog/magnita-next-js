@@ -5,7 +5,7 @@ import css from './header-item.module.scss'
 import {NavItem} from "@/src/widgets/header/types";
 import {ArrowIcon} from "@/src/shared";
 import {useState, useRef, useEffect} from "react";
-import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu/header-submenu";
+import {HeaderCatalogGrid} from "@/src/widgets/header/ui/header-catalog-grid/header-catalog-grid";
 
 interface ClientNavigationLinkProps {
 item: NavItem
@@ -114,7 +114,7 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
             </Link>
             
             {itemHasChildren && isDropdownOpen && (
-                <HeaderSubmenu 
+                <HeaderCatalogGrid 
                     links={item.children || []} 
                     onMouseEnter={handleMenuMouseEnter}
                     onMouseLeave={handleMenuMouseLeave}
