@@ -16,9 +16,8 @@ interface HeaderCatalogGridProps {
 
 export const HeaderCatalogGrid = ({links, triggerRef, onClose, onMouseEnter, onMouseLeave}: HeaderCatalogGridProps) => {
     const locale = useLocale();
-    const [position, setPosition] = useState({ top: 0, left: 0 });
-
-    useEffect(() => {
+    
+    const getInitialPosition = () => {
         if (triggerRef?.current) {
             const rect = triggerRef.current.getBoundingClientRect();
             const dropdownWidth = window.innerWidth <= 576 ? 280 : window.innerWidth <= 768 ? 360 : 750;
@@ -36,12 +35,15 @@ export const HeaderCatalogGrid = ({links, triggerRef, onClose, onMouseEnter, onM
                 leftPosition = halfWidth + 20;
             }
             
-            setPosition({
+            return {
                 top: rect.bottom + 2,
                 left: leftPosition
-            });
+            };
         }
-    }, [triggerRef]);
+        return { top: 0, left: 0 };
+    };
+
+    const position = getInitialPosition();
 
     return createPortal(<>
         {onClose && (
