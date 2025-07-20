@@ -14,7 +14,7 @@ onClose?: () => void;
 triggerRef?: React.RefObject<HTMLElement>;
 }
 
-export const HeaderSubmenu = ({links, triggerRef, onClose}: HeaderSubmenuProps) => {
+export const HeaderSubmenu = ({links, triggerRef, onClose, onMouseEnter, onMouseLeave}: HeaderSubmenuProps) => {
     const locale = useLocale();
     const [position, setPosition] = useState({ top: 0, left: 0 });
 
@@ -38,9 +38,14 @@ export const HeaderSubmenu = ({links, triggerRef, onClose}: HeaderSubmenuProps) 
         <div
             className={css.dropdown}
             style={{
-                '--dropdown-top': `${position.top}px`,
-                '--dropdown-left': `${position.left}px`
-            } as React.CSSProperties}
+                position: 'absolute',
+                top: position.top,
+                left: position.left,
+                transform: 'translateX(-50%)',
+                zIndex: 1000
+            }}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
         >
             <div className={css.dropdownContent}>
                 {links.map((child: NavItem) => (
