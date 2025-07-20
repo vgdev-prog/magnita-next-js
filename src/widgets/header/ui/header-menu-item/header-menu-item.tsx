@@ -17,6 +17,7 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
     const [isTouchDevice, setIsTouchDevice] = useState(false);
     const itemRef = useRef<HTMLLIElement>(null);
     const iconRef = useRef<HTMLButtonElement>(null);
+    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const itemHasChildren = item.children && item.children.length > 0;
 
@@ -28,30 +29,47 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
         
         checkTouchDevice();
         window.addEventListener('resize', checkTouchDevice);
-        return () => window.removeEventListener('resize', checkTouchDevice);
+        return () => {
+            window.removeEventListener('resize', checkTouchDevice);
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
     }, []);
 
     const handleMouseEnter = () => {
         if (!isTouchDevice) {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+            }
             setIsDropdownOpen(true);
         }
     };
 
     const handleMouseLeave = () => {
         if (!isTouchDevice) {
-            setIsDropdownOpen(false);
+            timeoutRef.current = setTimeout(() => {
+                setIsDropdownOpen(false);
+            }, 150);
         }
     };
 
     const handleMenuMouseEnter = () => {
         if (!isTouchDevice) {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+                timeoutRef.current = null;
+            }
             setIsDropdownOpen(true);
         }
     };
 
     const handleMenuMouseLeave = () => {
         if (!isTouchDevice) {
-            setIsDropdownOpen(false);
+            timeoutRef.current = setTimeout(() => {
+                setIsDropdownOpen(false);
+            }, 150);
         }
     };
 
