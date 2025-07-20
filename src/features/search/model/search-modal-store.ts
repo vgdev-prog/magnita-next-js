@@ -19,7 +19,7 @@ const initialState: SearchModalState = {
   searchQuery: '',
 }
 
-export const useSearchModalStore = create<SearchModalStore>((set, get) => ({
+export const useSearchModalStore = create<SearchModalStore>((set) => ({
   ...initialState,
 
   openModal: () => {

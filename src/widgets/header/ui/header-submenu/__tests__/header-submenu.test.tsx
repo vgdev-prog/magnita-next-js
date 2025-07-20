@@ -1,4 +1,4 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import { render } from '@/src/shared/lib/test-utils';
 import { HeaderSubmenu } from '../header-submenu';
 import { NavItem } from '@/src/widgets/header/types';

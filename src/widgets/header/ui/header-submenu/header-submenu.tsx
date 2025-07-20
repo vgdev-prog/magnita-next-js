@@ -4,7 +4,7 @@ import {Link} from "@/src/app/i18n/routing";
 import {NavItem} from "@/src/widgets/header/types";
 import {useLocale} from "next-intl";
 import {createPortal} from "react-dom";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
 interface HeaderSubmenuProps {
 links: NavItem[];
@@ -13,7 +13,7 @@ onMouseLeave?: () => void;
 triggerRef?: React.RefObject<HTMLElement>;
 }
 
-export const HeaderSubmenu = ({links, onMouseEnter, onMouseLeave, triggerRef}: HeaderSubmenuProps) => {
+export const HeaderSubmenu = ({links, triggerRef}: HeaderSubmenuProps) => {
     const locale = useLocale();
     const [position, setPosition] = useState({ top: 0, left: 0 });
 

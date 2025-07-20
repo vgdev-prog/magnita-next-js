@@ -2,6 +2,7 @@ import { screen } from '@testing-library/react';
 import { render } from '@/src/shared/lib/test-utils';
 import { Header } from '../the-header';
 import { NavItem } from '@/src/widgets/header/types';
+import * as useNavigationModule from '@/src/widgets/header/model/use-navigation';
 
 jest.mock('next/navigation', () => ({
     useRouter: jest.fn(),
@@ -28,8 +29,20 @@ jest.mock('@/src/widgets/header/ui/header-messengers', () => ({
     HeaderMessengers: () => <div data-testid="header-messengers">Messengers</div>,
 }));
 
+interface HeaderActionsProps {
+    burger?: React.ReactNode;
+    search?: React.ReactNode;
+    language?: React.ReactNode;
+    cart?: React.ReactNode;
+}
+
+interface HeaderMenuProps {
+    links: NavItem[];
+    Element: React.ComponentType<{ item: NavItem }>;
+}
+
 jest.mock('@/src/widgets/header/ui/header-actions', () => ({
-    HeaderActions: ({ burger, search, language, cart }: any) => (
+    HeaderActions: ({ burger, search, language, cart }: HeaderActionsProps) => (
         <div data-testid="header-actions">
             {burger && <div data-testid="burger">{burger}</div>}
             {search && <div data-testid="search">{search}</div>}
@@ -40,7 +53,7 @@ jest.mock('@/src/widgets/header/ui/header-actions', () => ({
 }));
 
 jest.mock('@/src/widgets/header/ui', () => ({
-    HeaderMenu: ({ links, Element }: any) => (
+    HeaderMenu: ({ links, Element }: HeaderMenuProps) => (
         <div data-testid="header-menu" data-links-count={links.length}>
             {links.map((link: NavItem) => (
                 <Element key={link.id} item={link} />
@@ -53,7 +66,7 @@ jest.mock('@/src/widgets/header/ui', () => ({
 }));
 
 describe('Header', () => {
-    const mockUseNavigation = require('@/src/widgets/header/model/use-navigation').useNavigation;
+    const mockUseNavigation = jest.spyOn(useNavigationModule, 'useNavigation');
 
     const mockNavigationItems: NavItem[] = [
         { id: 1, title: 'Home', href: '/' },
@@ -293,7 +306,7 @@ describe('Header', () => {
     describe('Edge Cases', () => {
         it('handles undefined initial navigation items', () => {
             const propsWithUndefined = {
-                initialNavigationItems: undefined as any,
+                initialNavigationItems: undefined as unknown as NavItem[],
             };
 
             expect(() => render(<Header {...propsWithUndefined} />)).not.toThrow();

@@ -1,5 +1,4 @@
 import { screen, fireEvent, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { render } from '@/src/shared/lib/test-utils';
 import { HeaderMenuItem } from '..';
 import { NavItem } from '@/src/widgets/header/types';
@@ -10,8 +9,15 @@ jest.mock('next/navigation', () => ({
 }));
 
 
+interface HeaderSubmenuProps {
+    links: NavItem[];
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
+    triggerRef?: React.RefObject<HTMLElement>;
+}
+
 jest.mock('@/src/widgets/header/ui/header-submenu/header-submenu', () => ({
-    HeaderSubmenu: ({ links, onMouseEnter, onMouseLeave, triggerRef }: any) => (
+    HeaderSubmenu: ({ links, onMouseEnter, onMouseLeave }: HeaderSubmenuProps) => (
         <div 
             data-testid="header-submenu"
             data-links-count={links.length}
@@ -28,7 +34,6 @@ jest.mock('@/src/widgets/header/ui/header-submenu/header-submenu', () => ({
 }));
 
 describe('HeaderMenuItem', () => {
-    const user = userEvent.setup();
 
     const mockItem: NavItem = {
         id: 1,
@@ -259,7 +264,7 @@ describe('HeaderMenuItem', () => {
         });
 
         it('handles null children gracefully', () => {
-            const itemWithNullChildren = { ...mockItem, children: null as any };
+            const itemWithNullChildren = { ...mockItem, children: null as unknown as NavItem[] };
             
             render(<HeaderMenuItem item={itemWithNullChildren} />);
 
