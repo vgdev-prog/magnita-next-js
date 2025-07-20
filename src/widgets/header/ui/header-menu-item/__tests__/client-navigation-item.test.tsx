@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import { render } from '@/src/shared/lib/test-utils';
-import { HeaderSubmenuItem } from '..';
+import { HeaderMenuItem } from '..';
 import { NavItem } from '@/src/widgets/header/types';
 
 jest.mock('next/navigation', () => ({
@@ -8,7 +8,7 @@ jest.mock('next/navigation', () => ({
     usePathname: () => '/',
 }));
 
-describe('HeaderSubmenuItem', () => {
+describe('HeaderMenuItem', () => {
     const mockItem: NavItem = {
         id: 1,
         title: 'Home',
@@ -16,7 +16,7 @@ describe('HeaderSubmenuItem', () => {
     };
 
     it('renders navigation item with correct content', () => {
-        render(<HeaderSubmenuItem item={mockItem} />);
+        render(<HeaderMenuItem item={mockItem} />);
 
         const linkElement = screen.getByRole('link', { name: /Home/i });
         expect(linkElement).toBeInTheDocument();
@@ -24,7 +24,7 @@ describe('HeaderSubmenuItem', () => {
     });
 
     it('renders as a list item', () => {
-        render(<HeaderSubmenuItem item={mockItem} />);
+        render(<HeaderMenuItem item={mockItem} />);
         const listItem = screen.getByRole('listitem');
         expect(listItem).toBeInTheDocument();
     });
@@ -36,7 +36,7 @@ describe('HeaderSubmenuItem', () => {
             href: '/catalog/products',
         };
 
-        render(<HeaderSubmenuItem item={itemWithAbsoluteUrl} />);
+        render(<HeaderMenuItem item={itemWithAbsoluteUrl} />);
 
         const linkElement = screen.getByRole('link');
         expect(linkElement).toHaveAttribute('href', '/catalog/products');
@@ -52,7 +52,7 @@ describe('HeaderSubmenuItem', () => {
             ],
         };
 
-        render(<HeaderSubmenuItem item={itemWithChildren} />);
+        render(<HeaderMenuItem item={itemWithChildren} />);
 
         const linkElement = screen.getByRole('link', { name: /Services/i });
         expect(linkElement).toBeInTheDocument();

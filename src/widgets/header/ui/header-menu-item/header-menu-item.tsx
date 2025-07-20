@@ -1,17 +1,20 @@
+"use client"
 import { Link } from "@/src/app/i18n/routing";
 import {useLocale} from "next-intl";
-import css from './header-submenu-item.module.scss'
+import css from './header-item.module.scss'
 import {NavItem} from "@/src/widgets/header/types";
 import {ArrowIcon} from "@/src/shared";
-import {useState} from "react";
+import {useState, useRef} from "react";
+import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu/header-submenu";
 
 interface ClientNavigationLinkProps {
 item: NavItem
 }
 
-export const HeaderSubmenuItem = ({item}: ClientNavigationLinkProps) => {
+export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
     const locale = useLocale();
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const itemRef = useRef<HTMLLIElement>(null);
 
     const itemHasChildren = item.children && item.children.length > 0;
 
@@ -20,14 +23,20 @@ export const HeaderSubmenuItem = ({item}: ClientNavigationLinkProps) => {
     };
 
     const handleMouseLeave = () => {
-        // Small delay to allow mouse to reach dropdown
-        setTimeout(() => {
-            setIsDropdownOpen(false);
-        }, 100);
+        setIsDropdownOpen(false);
+    };
+
+    const handleMenuMouseEnter = () => {
+        setIsDropdownOpen(true);
+    };
+
+    const handleMenuMouseLeave = () => {
+        setIsDropdownOpen(false);
     };
     
     return (
         <li 
+            ref={itemRef}
             className={css.item}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
@@ -42,22 +51,12 @@ export const HeaderSubmenuItem = ({item}: ClientNavigationLinkProps) => {
             </Link>
             
             {itemHasChildren && isDropdownOpen && (
-                <div 
-                    className={css.dropdown}
-                >
-                    <div className={css.dropdownContent}>
-                        {item.children?.map((child) => (
-                            <Link 
-                                key={child.id} 
-                                href={child.href} 
-                                locale={locale}
-                                className={css.dropdownItem}
-                            >
-                                {child.title}
-                            </Link>
-                        ))}
-                    </div>
-                </div>
+                <HeaderSubmenu 
+                    links={item.children || []} 
+                    onMouseEnter={handleMenuMouseEnter}
+                    onMouseLeave={handleMenuMouseLeave}
+                    triggerRef={itemRef}
+                />
             )}
         </li>
     );
