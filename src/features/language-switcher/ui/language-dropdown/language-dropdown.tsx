@@ -44,7 +44,7 @@ export const LanguageDropdown = ({
 
   const dropdownStyle: React.CSSProperties = triggerRect 
     ? {
-        position: 'fixed',
+        position: 'absolute',
         top: triggerRect.bottom + 8,
         left: triggerRect.left + triggerRect.width / 2 - 80, // 160px / 2 = 80px (половина ширины дропдауна)
         zIndex: 1000
