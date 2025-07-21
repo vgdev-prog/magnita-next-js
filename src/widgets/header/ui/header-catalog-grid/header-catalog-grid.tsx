@@ -35,7 +35,7 @@ export const HeaderCatalogGrid = ({links, triggerRef, onClose, onMouseEnter, onM
                 leftPosition = window.innerWidth - halfWidth - 20;
             }
             
-            // Проверяем, не выходит ли дропдаун за левый край экрана  
+            // Проверяем, не выходит ли дропдаун за левый край экрана
             if (leftPosition - halfWidth < 20) {
                 leftPosition = halfWidth + 20;
             }
@@ -81,7 +81,7 @@ export const HeaderCatalogGrid = ({links, triggerRef, onClose, onMouseEnter, onM
                         >
                             {child.image && (
                                 <div className={css.itemIcon}>
-                                    <Image src={child.image} alt={child.title} width={24} height={24} />
+                                    <Image src={child.image} unoptimized={true} alt={child.title} width={24} height={24} />
                                 </div>
                             )}
                             <div className={css.itemTitle}>
