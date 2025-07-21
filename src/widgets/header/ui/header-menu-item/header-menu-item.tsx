@@ -61,7 +61,7 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
                     currentTarget.contains(relatedTarget)) {
                     return;
                 }
-            } catch (error) {
+            } catch {
                 // В случае ошибки просто продолжаем закрывать дропдаун
             }
             
