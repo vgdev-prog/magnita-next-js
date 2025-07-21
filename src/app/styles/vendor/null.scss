@@ -14,11 +14,9 @@
 :active {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   -webkit-tap-highlight-color: transparent;
-  // outline: none;
 }
 a:focus,
 a:active {
-  // outline: none;
   color: currentColor;
 }
 
@@ -34,7 +32,6 @@ body {
   line-height: 1;
   font-family: $fontFamily, sans-serif;
   font-size: $fontSize;
-  //text-rendering: optimizeLegibility;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -63,8 +60,6 @@ ul li {
 }
 img {
   vertical-align: top;
-  //display: block;
-  //width: 100%;
 }
 h1,
 h2,

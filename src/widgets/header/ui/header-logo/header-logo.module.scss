@@ -1,11 +1,13 @@
+@use "@/src/app/styles/vendor/variables" as *;
+
 .block {
-display: flex;
+  display: flex;
   align-items: center;
   gap: 20px;
 }
 
 .link {
-display: flex;
+  display: flex;
   flex-direction: column;
   color: #fff;
   font-size: 10px;
@@ -14,4 +16,7 @@ display: flex;
 
 .text {
   font-size: 12px;
+  @media (max-width: 1200px){
+    display: none;
+  }
 }

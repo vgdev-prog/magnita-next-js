@@ -15,11 +15,7 @@
   }
 }
 
-// Шаблоны (заготовки)
-// @extend %имя шаблона;
-// Сниппет (SCSS): ex
 
-// Счетчик для списка
 %listCounter {
   list-style-type: none;
   counter-reset: item;
@@ -34,7 +30,6 @@
     }
   }
 }
-// Адаптивное видео
 %responsiveVideo {
   position: relative;
   overflow: hidden;
@@ -51,7 +46,6 @@
     height: 100%;
   }
 }
-// Видео в качестве фона
 %videoBackground {
   video,
   iframe,
@@ -69,7 +63,6 @@
     background-size: cover;
   }
 }
-// Серый фильтр
 %grayfilter {
   transition: all 0.3s ease 0s;
   filter: grayscale(1);
@@ -79,19 +72,15 @@
     }
   }
 }
-// Отменить выделение
 %noselect {
   user-select: none;
 }
-// Зеркальное отображение
 %mirror {
   transform: scale(-1, 1);
 }
-// Плавный скролл
 %smoothscroll {
   -webkit-overflow-scrolling: touch;
 }
-// Скрыть скролл
 %hidescroll {
   &::-webkit-scrollbar {
     display: none;

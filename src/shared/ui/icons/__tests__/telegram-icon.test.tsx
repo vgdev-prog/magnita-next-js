@@ -51,7 +51,6 @@ describe('TelegramIcon Component', () => {
     expect(pathElement).toBeInTheDocument()
     expect(pathElement).toHaveAttribute('d')
     
-    // Check that the path data is not empty (telegram icon specific path)
     const pathData = pathElement?.getAttribute('d')
     expect(pathData).toBeTruthy()
     expect(pathData).toContain('M508.194,20.517')
@@ -89,7 +88,6 @@ describe('TelegramIcon Component', () => {
     const svgElement = container.querySelector('svg')
     const viewBox = svgElement?.getAttribute('viewBox')
     
-    // Telegram icon should have square viewBox
     expect(viewBox).toBe('0 0 512.004 512.004')
   })
 

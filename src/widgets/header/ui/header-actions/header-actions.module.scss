@@ -1,15 +1,13 @@
-.container {
+.actions {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-left: auto;
+  gap: 12px;
   
-  // Responsive adjustments
   @media (max-width: 768px) {
-    gap: 10px;
+    gap: 8px;
   }
   
   @media (max-width: 576px) {
-    gap: 8px;
+    gap: 6px;
   }
 }

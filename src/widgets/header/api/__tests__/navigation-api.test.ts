@@ -1,8 +1,7 @@
 import axios from 'axios'
-import { fetchClientNavigation } from '../navigation-api'
+import { fetchClientNavigation } from '@/src/widgets'
 import { NavItem } from '../../types'
 
-// Mock axios
 jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
 
@@ -23,7 +22,7 @@ describe('Navigation API', () => {
 
       const result = await fetchClientNavigation()
 
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('https://687cc3d4918b6422432f623e.mockapi.io/api/v1/menus')
       expect(result).toEqual(mockData)
     })
 
@@ -34,7 +33,7 @@ describe('Navigation API', () => {
       await fetchClientNavigation()
 
       expect(mockedAxios.get).toHaveBeenCalledTimes(1)
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('https://687cc3d4918b6422432f623e.mockapi.io/api/v1/menus')
     })
 
     it('returns data from axios response', async () => {
@@ -67,7 +66,7 @@ describe('Navigation API', () => {
       mockedAxios.get.mockRejectedValue(new Error(errorMessage))
 
       await expect(fetchClientNavigation()).rejects.toThrow(errorMessage)
-      expect(mockedAxios.get).toHaveBeenCalledWith('http://localhost:9000/header-navigation')
+      expect(mockedAxios.get).toHaveBeenCalledWith('https://687cc3d4918b6422432f623e.mockapi.io/api/v1/menus')
     })
 
     it('handles empty response data', async () => {
@@ -119,7 +118,6 @@ describe('Navigation API', () => {
 
       const result = await fetchClientNavigation()
 
-      // TypeScript compilation will fail if types don't match
       expect(typeof result[0].id).toBe('number')
       expect(typeof result[0].title).toBe('string')
       expect(typeof result[0].href).toBe('string')

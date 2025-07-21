@@ -27,7 +27,18 @@ export const CartModal = () => {
                     <button
                         onClick={closeModal}
                         className={css.close}
-                    >×
+                    >
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 33 33"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                d="M32.526 2.828L29.698 0L16.263 13.435L2.828 0L0 2.828L13.435 16.263L0 29.698L2.828 32.526L16.263 19.091L29.698 32.526L32.526 29.698L19.091 16.263L32.526 2.828Z"
+                            ></path>
+                        </svg>
                     </button>
 
                     <div className={css.topLine}>

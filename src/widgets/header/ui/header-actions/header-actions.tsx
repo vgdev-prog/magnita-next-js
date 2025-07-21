@@ -2,15 +2,19 @@ import {ReactNode} from "react";
 import css from './header-actions.module.scss';
 
 interface HeaderActionsProps {
-language: ReactNode;
-cart: ReactNode;
+search?: ReactNode;
+language?: ReactNode;
+cart?: ReactNode;
+burger?: ReactNode;
 }
 
-export const HeaderActions = ({language,cart}: HeaderActionsProps) => {
+export const HeaderActions = ({search,language,cart,burger}: HeaderActionsProps) => {
     return (
-        <div className={css.container}>
+        <div className={css.actions}>
+            {search}
             {language}
             {cart}
+            {burger}
         </div>
     );
 };

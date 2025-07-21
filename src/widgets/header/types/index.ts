@@ -1,6 +1,14 @@
+export type MenuType = 'column' | 'catalog';
+
 export type NavItem = {
     id: number;
     title: string;
     href: string;
-    children?: NavItem[]
+    image?: string;
+    menu_type?: MenuType;
+    children?: Array<{
+        id: number;
+        title: string;
+        href: string;
+    }>;
 }

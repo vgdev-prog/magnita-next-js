@@ -6,19 +6,21 @@ import {HeaderLogo} from "@/src/widgets/header/ui/header-logo";
 import {HeaderFactory} from "@/src/widgets/header/ui/header-factory";
 import { HeaderCalculator } from '../header-calculator';
 import { HeaderMessengers } from '../header-messengers';
-import {HeaderSubmenu} from "@/src/widgets/header/ui/header-submenu";
-import {HeaderSubmenuItem} from "@/src/widgets/header/ui/header-submenu-item";
 import {NavItem} from "@/src/widgets/header/types";
 import {HeaderActions} from "@/src/widgets/header/ui/header-actions";
 import {ReactNode} from "react";
+import {HeaderMenu} from "@/src/widgets/header/ui";
+import {HeaderMenuItem} from "@/src/widgets/header/ui";
 
 export interface HeaderProps {
 initialNavigationItems: NavItem[];
+searchButton?: ReactNode;
 languageSelect?: ReactNode;
 cartButton?: ReactNode;
+burgerButton?: ReactNode;
 }
 
-export const Header = ({initialNavigationItems,cartButton,languageSelect}: HeaderProps) => {
+export const Header = ({initialNavigationItems,searchButton,cartButton,languageSelect,burgerButton}: HeaderProps) => {
 
     const {navigationItems} = useNavigation(initialNavigationItems);
 
@@ -30,12 +32,12 @@ export const Header = ({initialNavigationItems,cartButton,languageSelect}: Heade
                         <HeaderFactory/>
                         <HeaderCalculator />
                         <HeaderMessengers />
-                        <HeaderActions language={languageSelect} cart={cartButton} />
+                        <HeaderActions burger={burgerButton} search={searchButton} language={languageSelect} cart={cartButton} />
                     </div>
                 </div>
                 <div className={css.bottom_header}>
                    <div className="header__container">
-                       <HeaderSubmenu links={navigationItems} Element={HeaderSubmenuItem}/>
+                       <HeaderMenu links={navigationItems} Element={HeaderMenuItem}/>
                    </div>
 
                 </div>

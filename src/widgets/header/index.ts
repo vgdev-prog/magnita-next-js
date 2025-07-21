@@ -1,2 +1,2 @@
-export {Header} from './ui/header'
+export {Header} from './ui'
 export {fetchClientNavigation} from './api'
