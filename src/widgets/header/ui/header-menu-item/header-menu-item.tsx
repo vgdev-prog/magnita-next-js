@@ -50,12 +50,19 @@ export const HeaderMenuItem = ({item}: ClientNavigationLinkProps) => {
     const handleMouseLeave = (e: React.MouseEvent) => {
         if (!isTouchDevice) {
             // Проверяем, что курсор действительно покинул элемент
-            const relatedTarget = e.relatedTarget as Element;
-            const currentTarget = e.currentTarget as Element;
+            const relatedTarget = e.relatedTarget;
+            const currentTarget = e.currentTarget;
             
             // Если курсор переместился на дочерний элемент, не закрываем
-            if (relatedTarget && currentTarget.contains(relatedTarget)) {
-                return;
+            try {
+                if (relatedTarget && currentTarget && 
+                    relatedTarget instanceof Node && 
+                    currentTarget instanceof Element &&
+                    currentTarget.contains(relatedTarget)) {
+                    return;
+                }
+            } catch (error) {
+                // В случае ошибки просто продолжаем закрывать дропдаун
             }
             
             timeoutRef.current = setTimeout(() => {

@@ -4,7 +4,7 @@ import {Link} from "@/src/app/i18n/routing";
 import {NavItem} from "@/src/widgets/header/types";
 import {useLocale} from "next-intl";
 import {createPortal} from "react-dom";
-import {useEffect, useState} from "react";
+import Image from "next/image";
 
 interface HeaderCatalogGridProps {
     links: NavItem[];
@@ -81,7 +81,7 @@ export const HeaderCatalogGrid = ({links, triggerRef, onClose, onMouseEnter, onM
                         >
                             {child.image && (
                                 <div className={css.itemIcon}>
-                                    <img src={child.image} alt={child.title} />
+                                    <Image src={child.image} alt={child.title} width={24} height={24} />
                                 </div>
                             )}
                             <div className={css.itemTitle}>

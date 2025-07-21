@@ -1,36 +1,55 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor, act } from '@testing-library/react';
 import { render } from '@/src/shared/lib/test-utils';
 import { HeaderMenuItem } from '..';
 import { NavItem } from '@/src/widgets/header/types';
+
 
 jest.mock('next/navigation', () => ({
     useRouter: jest.fn(),
     usePathname: () => '/',
 }));
 
+// Mock touch device detection to simulate non-touch device
+beforeAll(() => {
+    // Ensure window.ontouchstart is undefined (non-touch device)
+    delete (window as unknown as Record<string, unknown>).ontouchstart;
+    
+    // Ensure navigator.maxTouchPoints is 0 (non-touch device)
+    Object.defineProperty(navigator, 'maxTouchPoints', {
+        writable: true,
+        configurable: true,
+        value: 0,
+    });
+});
 
-interface HeaderSubmenuProps {
+
+
+const mockRenderDropdown = jest.fn();
+
+interface MockDropdownProps {
     links: NavItem[];
     onMouseEnter?: () => void;
     onMouseLeave?: () => void;
-    triggerRef?: React.RefObject<HTMLElement>;
 }
 
-jest.mock('@/src/widgets/header/ui/header-submenu/header-submenu', () => ({
-    HeaderSubmenu: ({ links, onMouseEnter, onMouseLeave }: HeaderSubmenuProps) => (
-        <div 
-            data-testid="header-submenu"
-            data-links-count={links.length}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-        >
-            {links.map((link: NavItem) => (
-                <div key={link.id} data-testid={`submenu-item-${link.id}`}>
-                    {link.title}
-                </div>
-            ))}
-        </div>
-    ),
+jest.mock('@/src/widgets/header/lib/dropdown-factory', () => ({
+    renderDropdown: (menuType: string, { links, onMouseEnter, onMouseLeave }: MockDropdownProps) => {
+        mockRenderDropdown(menuType, { links, onMouseEnter, onMouseLeave });
+        return (
+            <div 
+                data-testid="header-submenu"
+                data-links-count={links.length}
+                onMouseEnter={onMouseEnter}
+                onMouseLeave={onMouseLeave}
+            >
+                {links.map((link: NavItem) => (
+                    <div key={link.id} data-testid={`submenu-item-${link.id}`}>
+                        {link.title}
+                    </div>
+                ))}
+            </div>
+        );
+    },
 }));
 
 describe('HeaderMenuItem', () => {
@@ -53,6 +72,7 @@ describe('HeaderMenuItem', () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
+        mockRenderDropdown.mockClear();
     });
 
     describe('Basic Rendering', () => {
@@ -142,8 +162,12 @@ describe('HeaderMenuItem', () => {
         it('shows dropdown on mouse enter', async () => {
             render(<HeaderMenuItem item={mockItemWithChildren} />);
 
-            const listItem = screen.getByRole('listitem');
-            fireEvent.mouseEnter(listItem);
+            const link = screen.getByRole('link');
+            
+            await act(async () => {
+                fireEvent.mouseEnter(link);
+            });
+
 
             await waitFor(() => {
                 expect(screen.getByTestId('header-submenu')).toBeInTheDocument();
@@ -151,26 +175,36 @@ describe('HeaderMenuItem', () => {
         });
 
         it('hides dropdown on mouse leave', async () => {
+            jest.useFakeTimers();
+            
             render(<HeaderMenuItem item={mockItemWithChildren} />);
 
-            const listItem = screen.getByRole('listitem');
+            const link = screen.getByRole('link');
             
-            fireEvent.mouseEnter(listItem);
+            fireEvent.mouseEnter(link);
             await waitFor(() => {
                 expect(screen.getByTestId('header-submenu')).toBeInTheDocument();
             });
 
-            fireEvent.mouseLeave(listItem);
+            fireEvent.mouseLeave(link);
+            
+            // Fast-forward the timeout
+            act(() => {
+                jest.advanceTimersByTime(300);
+            });
+            
             await waitFor(() => {
                 expect(screen.queryByTestId('header-submenu')).not.toBeInTheDocument();
             });
+            
+            jest.useRealTimers();
         });
 
         it('passes correct props to HeaderSubmenu', async () => {
             render(<HeaderMenuItem item={mockItemWithChildren} />);
 
-            const listItem = screen.getByRole('listitem');
-            fireEvent.mouseEnter(listItem);
+            const link = screen.getByRole('link');
+            fireEvent.mouseEnter(link);
 
             await waitFor(() => {
                 const submenu = screen.getByTestId('header-submenu');
@@ -183,8 +217,8 @@ describe('HeaderMenuItem', () => {
         it('does not show dropdown for items without children', async () => {
             render(<HeaderMenuItem item={mockItem} />);
 
-            const listItem = screen.getByRole('listitem');
-            fireEvent.mouseEnter(listItem);
+            const link = screen.getByRole('link');
+            fireEvent.mouseEnter(link);
 
             await waitFor(() => {
                 expect(screen.queryByTestId('header-submenu')).not.toBeInTheDocument();
@@ -196,8 +230,8 @@ describe('HeaderMenuItem', () => {
         it('keeps dropdown open when mouse enters submenu', async () => {
             render(<HeaderMenuItem item={mockItemWithChildren} />);
 
-            const listItem = screen.getByRole('listitem');
-            fireEvent.mouseEnter(listItem);
+            const link = screen.getByRole('link');
+            fireEvent.mouseEnter(link);
 
             await waitFor(() => {
                 expect(screen.getByTestId('header-submenu')).toBeInTheDocument();
@@ -210,10 +244,12 @@ describe('HeaderMenuItem', () => {
         });
 
         it('hides dropdown when mouse leaves submenu', async () => {
+            jest.useFakeTimers();
+            
             render(<HeaderMenuItem item={mockItemWithChildren} />);
 
-            const listItem = screen.getByRole('listitem');
-            fireEvent.mouseEnter(listItem);
+            const link = screen.getByRole('link');
+            fireEvent.mouseEnter(link);
 
             await waitFor(() => {
                 expect(screen.getByTestId('header-submenu')).toBeInTheDocument();
@@ -222,9 +258,16 @@ describe('HeaderMenuItem', () => {
             const submenu = screen.getByTestId('header-submenu');
             fireEvent.mouseLeave(submenu);
 
+            // Fast-forward the timeout
+            act(() => {
+                jest.advanceTimersByTime(300);
+            });
+
             await waitFor(() => {
                 expect(screen.queryByTestId('header-submenu')).not.toBeInTheDocument();
             });
+            
+            jest.useRealTimers();
         });
     });
 

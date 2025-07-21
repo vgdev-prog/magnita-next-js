@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { fetchClientNavigation } from '../navigation-api'
+import { fetchClientNavigation } from '@/src/widgets'
 import { NavItem } from '../../types'
 
 jest.mock('axios')

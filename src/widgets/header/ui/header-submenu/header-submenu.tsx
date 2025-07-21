@@ -38,12 +38,14 @@ export const HeaderSubmenu = ({links, triggerRef, onClose, onMouseEnter, onMouse
         <div
             className={css.dropdown}
             style={{
+                '--dropdown-top': `${position.top}px`,
+                '--dropdown-left': `${position.left}px`,
                 position: 'absolute',
                 top: position.top,
                 left: position.left,
                 transform: 'translateX(-50%)',
                 zIndex: 1000
-            }}
+            } as React.CSSProperties}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
         >
